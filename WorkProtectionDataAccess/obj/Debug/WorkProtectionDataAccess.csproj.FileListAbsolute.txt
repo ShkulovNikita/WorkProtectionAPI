@@ -1,0 +1,14 @@
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\bin\Debug\WorkProtectionDataAccess.dll.config
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\bin\Debug\WorkProtectionDataAccess.dll
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\bin\Debug\WorkProtectionDataAccess.pdb
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\bin\Debug\EntityFramework.dll
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\bin\Debug\EntityFramework.xml
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\obj\Debug\WorkProtectionDataAccess.csprojAssemblyReference.cache
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\obj\Debug\WorkProtectionDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\obj\Debug\WorkProtectionDataAccess.csproj.CopyComplete
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\obj\Debug\WorkProtectionDataAccess.dll
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\obj\Debug\WorkProtectionDataAccess.pdb
+C:\Users\123\source\repos\uirsWorkProtection\WorkProtectionDataAccess\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

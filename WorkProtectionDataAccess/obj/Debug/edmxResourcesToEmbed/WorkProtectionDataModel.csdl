@@ -1,0 +1,1315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WorkProtectionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="SearchFirstName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchLastName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchMiddleName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchPhone" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchComment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchFullName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Record" Relationship="Self.Patient_RecordGuid_fk" FromRole="Patient" ToRole="Record" />
+  </EntityType>
+  <EntityType Name="PatientDactilography">
+    <Key>
+      <PropertyRef Name="PatientGuid" />
+    </Key>
+    <Property Name="PatientGuid" Type="Guid" Nullable="false" />
+    <Property Name="LeftIndex" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LeftMiddle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LeftRing" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LeftLittle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LeftThumb" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RightIndex" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RightMiddle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RightRing" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RightLittle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RightThumb" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PatientPhoto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientGuid" Type="Guid" Nullable="false" />
+    <Property Name="PhotoOriginal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Photo128" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="isVerifed" Type="Boolean" />
+    <Property Name="isDeleted" Type="Boolean" />
+    <Property Name="SrcOriginal" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Src600" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Src200" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Src50" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PatientRelation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParentPatientGuid" Type="Guid" Nullable="false" />
+    <Property Name="ChieldPatientGuid" Type="Guid" Nullable="false" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="DateTo" Type="DateTime" Precision="0" />
+    <Property Name="DateFrom" Type="DateTime" Precision="0" />
+    <Property Name="IsArchive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PatientRelationType" Relationship="Self.PatientRelation_TypeId_fk" FromRole="PatientRelation" ToRole="PatientRelationType" />
+  </EntityType>
+  <EntityType Name="PatientRelationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="ParentName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ChieldName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PatientRelation" Relationship="Self.PatientRelation_TypeId_fk" FromRole="PatientRelationType" ToRole="PatientRelation" />
+  </EntityType>
+  <EntityType Name="PatientStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientGuid" Type="Guid" Nullable="false" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PatientStatusType" Relationship="Self.PatientStatus_StatusId_fk" FromRole="PatientStatus" ToRole="PatientStatusType" />
+  </EntityType>
+  <EntityType Name="PatientStatusType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PatientStatus" Relationship="Self.PatientStatus_StatusId_fk" FromRole="PatientStatusType" ToRole="PatientStatus" />
+  </EntityType>
+  <EntityType Name="AttachedFile">
+    <Key>
+      <PropertyRef Name="Guid" />
+    </Key>
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Path" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FolderId" Type="Int32" />
+    <NavigationProperty Name="AttachedFileFolder" Relationship="Self.AttachedFile_FolderId_fk" FromRole="AttachedFile" ToRole="AttachedFileFolder" />
+    <NavigationProperty Name="BriefingAttachedFile" Relationship="Self.BriefingAttachedFile_FileGuid_fk" FromRole="AttachedFile" ToRole="BriefingAttachedFile" />
+    <NavigationProperty Name="InstructionBlitzFile" Relationship="Self.InstructionBlitzFile_FileGuid_fk" FromRole="AttachedFile" ToRole="InstructionBlitzFile" />
+    <NavigationProperty Name="InstructionFile" Relationship="Self.InstructionFile_FileGuid_fk" FromRole="AttachedFile" ToRole="InstructionFile" />
+    <NavigationProperty Name="SurveyAttachedFile" Relationship="Self.SurveyAttachedFile_FileGuid_fk" FromRole="AttachedFile" ToRole="SurveyAttachedFile" />
+  </EntityType>
+  <EntityType Name="AttachedFileFolder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AttachedFile" Relationship="Self.AttachedFile_FolderId_fk" FromRole="AttachedFileFolder" ToRole="AttachedFile" />
+  </EntityType>
+  <EntityType Name="Record">
+    <Key>
+      <PropertyRef Name="Guid" />
+    </Key>
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="DocumentGuid" Type="Guid" Nullable="false" />
+    <Property Name="IsArchive" Type="Boolean" Nullable="false" />
+    <Property Name="LastVersionGuid" Type="Guid" Nullable="false" />
+    <Property Name="IsSystem" Type="Boolean" />
+    <Property Name="DocumentNameGuid" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Patient" Relationship="Self.Patient_RecordGuid_fk" FromRole="Record" ToRole="Patient" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="P_ID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="OKPDTR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="OKZ" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="KCS" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="TARIFF" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="ETKS" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="CATEGOGY" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="InstructionProfession" Relationship="Self.InstructionProfession_ProfessionId_fk" FromRole="Post" ToRole="InstructionProfession" />
+    <NavigationProperty Name="SurveyTemplateProfession" Relationship="Self.SurveyTemplateProfession_ProfessionId_fk" FromRole="Post" ToRole="SurveyTemplateProfession" />
+  </EntityType>
+  <EntityType Name="Instruction">
+    <Key>
+      <PropertyRef Name="VersionId" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="VersionId" Type="Int32" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="InstructionVersion" Type="Int32" />
+    <Property Name="InstructionDate" Type="DateTime" Precision="0" />
+    <Property Name="InstructionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InstructionCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InstructionComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InstructionCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InstructionCategoryId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="VersionId" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="VersionId" Type="Int32" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="QuestionCategoryId" Type="Int32" />
+    <Property Name="QuestionCode" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="QuestionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="QuestionComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="QuestionCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="QuestionText" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="QuestionImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="QuestionAnswer">
+    <Key>
+      <PropertyRef Name="VersionId" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="VersionId" Type="Int32" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="AnswerComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AnswerCode" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="AnswerCorrect" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="AnswerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AnswerCorrectId" Type="Int32" />
+    <Property Name="Normativno_pravovoy_akt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Punkt_dokumenta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SettingsAnketa">
+    <Key>
+      <PropertyRef Name="VersionId" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="VersionId" Type="Int32" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="Izmeryatj_parametr" Type="Boolean" />
+    <Property Name="Poryadok_prohozhdeniya" Type="Int32" />
+    <Property Name="Rezhim_obucheniya" Type="Boolean" />
+    <Property Name="SurveyTime" Type="Int32" />
+    <Property Name="RepeatQuestion" Type="Boolean" />
+    <Property Name="RepeatQuestionIsCorrect" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SettingsAnketaQuestionCategory">
+    <Key>
+      <PropertyRef Name="VersionId" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="VersionId" Type="Int32" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="Poryadok_prohozhdeniya" Type="Int32" />
+    <Property Name="QuestionCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="QuestionCategoryId" Type="Int32" />
+    <Property Name="Kolichestvo_voprosov" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SurveyTemplate">
+    <Key>
+      <PropertyRef Name="VersionId" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="VersionId" Type="Int32" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="SurveyButtonName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SurveyType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SurveyComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SurveyName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SurveyTypeDocumentGuid" Type="Guid" />
+    <Property Name="SurveyTypeRepeatDocumentGuid" Type="Guid" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+    <Property Name="IsRestorePassword" Type="Boolean" />
+    <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SecondStepOfAuthentication" Type="Boolean" Nullable="false" />
+    <Property Name="EndDateBlocking" Type="DateTime" Precision="3" />
+    <Property Name="SendEmailDate" Type="DateTime" Precision="3" />
+    <Property Name="LastMessageNumber" Type="Int32" />
+    <Property Name="KeyForRestorePassword" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsTestUser" Type="Boolean" />
+    <Property Name="SipId" Type="Int32" Nullable="false" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="GuidByDomain" Type="Guid" />
+    <Property Name="LoginByDomain" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="isPasswordUnlimited" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="UserProfilePhoto" Relationship="Self.UserProfilePhoto_UserId_fk" FromRole="User" ToRole="UserProfilePhoto" />
+  </EntityType>
+  <EntityType Name="UserProfilePhoto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="PhotoOriginal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Photo128" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Photo32" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SrcOriginal" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Src600" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Src200" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Src50" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="Self.UserProfilePhoto_UserId_fk" FromRole="UserProfilePhoto" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Briefing">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PatientGuid" Type="Guid" Nullable="false" />
+    <Property Name="InstructionGuid" Type="Guid" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <Property Name="TimeSeconds" Type="Int32" Nullable="false" />
+    <Property Name="DeviceGuid" Type="Guid" Nullable="false" />
+    <Property Name="InstructionVersion" Type="Int32" />
+    <Property Name="InstructionType" Type="Int32" Nullable="false" />
+    <Property Name="BlitzInstructionGuid" Type="Guid" />
+    <NavigationProperty Name="BriefingAttachedFile" Relationship="Self.BriefingAttachedFile_BriefingId_fk" FromRole="Briefing" ToRole="BriefingAttachedFile" />
+  </EntityType>
+  <EntityType Name="BriefingAttachedFile">
+    <Key>
+      <PropertyRef Name="BriefingId" />
+      <PropertyRef Name="FileGuid" />
+    </Key>
+    <Property Name="BriefingId" Type="Int32" Nullable="false" />
+    <Property Name="FileGuid" Type="Guid" Nullable="false" />
+    <Property Name="TypeId" Type="Int32" />
+    <NavigationProperty Name="AttachedFile" Relationship="Self.BriefingAttachedFile_FileGuid_fk" FromRole="BriefingAttachedFile" ToRole="AttachedFile" />
+    <NavigationProperty Name="Briefing" Relationship="Self.BriefingAttachedFile_BriefingId_fk" FromRole="BriefingAttachedFile" ToRole="Briefing" />
+  </EntityType>
+  <EntityType Name="BriefingReport">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PeriodType" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="PrintFormPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MailTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SettingsId" Type="Int32" />
+    <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTo" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="BriefingReportSettings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsEnable" Type="Boolean" Nullable="false" />
+    <Property Name="PeriodType" Type="Int32" Nullable="false" />
+    <Property Name="PrintFormPath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BriefingReportSettingsEmployee" Relationship="Self.BriefingReportSettingsEmployee_SettingsId_fk" FromRole="BriefingReportSettings" ToRole="BriefingReportSettingsEmployee" />
+  </EntityType>
+  <EntityType Name="Instruction1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="SearchName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="SearchCode" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentVersion" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionBlitz">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="SearchName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="SearchNumber" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionBlitzCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TimeType" Type="Int32" Nullable="false" />
+    <Property Name="TimeValue" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionBlitzFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InstructionBlitzGuid" Type="Guid" Nullable="false" />
+    <Property Name="FileGuid" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="AttachedFile" Relationship="Self.InstructionBlitzFile_FileGuid_fk" FromRole="InstructionBlitzFile" ToRole="AttachedFile" />
+  </EntityType>
+  <EntityType Name="InstructionCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InstructionGuid" Type="Guid" Nullable="false" />
+    <Property Name="FileGuid" Type="Guid" Nullable="false" />
+    <Property Name="InstructionVersion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AttachedFile" Relationship="Self.InstructionFile_FileGuid_fk" FromRole="InstructionFile" ToRole="AttachedFile" />
+  </EntityType>
+  <EntityType Name="InstructionProfession">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InstructionGuid" Type="Guid" Nullable="false" />
+    <Property Name="ProfessionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Post" Relationship="Self.InstructionProfession_ProfessionId_fk" FromRole="InstructionProfession" ToRole="Post" />
+  </EntityType>
+  <EntityType Name="InstructionSettings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PeriodTimeValue" Type="Int32" Nullable="false" />
+    <Property Name="PeriodTimeType" Type="Int32" Nullable="false" />
+    <Property Name="NewVersionTimeValue" Type="Int32" Nullable="false" />
+    <Property Name="NewVersionTimeType" Type="Int32" Nullable="false" />
+    <Property Name="InactiveTimeValue" Type="Int32" Nullable="false" />
+    <Property Name="InactiveTimeType" Type="Int32" Nullable="false" />
+    <Property Name="DayColors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BlitzDayColors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Question1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="SearchName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="SearchCode" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="SearchText" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="QuestionAnswerCorrectPercent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="Int32" Nullable="false" />
+    <Property Name="ValueDelimeter" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuestionCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Survey">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTo" Type="DateTime" Precision="3" />
+    <Property Name="PatientGuid" Type="Guid" Nullable="false" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="DeviceGuid" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="SurveyAnswer" Relationship="Self.SurveyAnswer_SurveyId_fk" FromRole="Survey" ToRole="SurveyAnswer" />
+    <NavigationProperty Name="SurveyAttachedFile" Relationship="Self.SurveyAttachedFile_SurveyId_fk" FromRole="Survey" ToRole="SurveyAttachedFile" />
+  </EntityType>
+  <EntityType Name="SurveyAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SurveyId" Type="Int32" Nullable="false" />
+    <Property Name="QuestionGuid" Type="Guid" Nullable="false" />
+    <Property Name="QuestionVersionNumber" Type="Int32" Nullable="false" />
+    <Property Name="SelectedAnswerNumber" Type="Int32" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Survey" Relationship="Self.SurveyAnswer_SurveyId_fk" FromRole="SurveyAnswer" ToRole="Survey" />
+  </EntityType>
+  <EntityType Name="SurveyAttachedFile">
+    <Key>
+      <PropertyRef Name="SurveyId" />
+      <PropertyRef Name="FileGuid" />
+    </Key>
+    <Property Name="SurveyId" Type="Int32" Nullable="false" />
+    <Property Name="FileGuid" Type="Guid" Nullable="false" />
+    <Property Name="TypeId" Type="Int32" />
+    <NavigationProperty Name="AttachedFile" Relationship="Self.SurveyAttachedFile_FileGuid_fk" FromRole="SurveyAttachedFile" ToRole="AttachedFile" />
+    <NavigationProperty Name="Survey" Relationship="Self.SurveyAttachedFile_SurveyId_fk" FromRole="SurveyAttachedFile" ToRole="Survey" />
+  </EntityType>
+  <EntityType Name="SurveyReport">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PeriodType" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTo" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CorrectPercent" Type="Int32" />
+    <Property Name="MailTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SettingsId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SurveyReportSettings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsEnable" Type="Boolean" Nullable="false" />
+    <Property Name="PeriodType" Type="Int32" Nullable="false" />
+    <Property Name="CorrectPercent" Type="Int32" />
+    <NavigationProperty Name="SurveyReportSettingsEmployee" Relationship="Self.ReportSettingsEmployee_SettingsId_fk" FromRole="SurveyReportSettings" ToRole="SurveyReportSettingsEmployee" />
+  </EntityType>
+  <EntityType Name="SurveyReportSettingsEmployee">
+    <Key>
+      <PropertyRef Name="SettingsId" />
+      <PropertyRef Name="EmployeeGuid" />
+    </Key>
+    <Property Name="SettingsId" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeGuid" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="SurveyReportSettings" Relationship="Self.ReportSettingsEmployee_SettingsId_fk" FromRole="SurveyReportSettingsEmployee" ToRole="SurveyReportSettings" />
+  </EntityType>
+  <EntityType Name="SurveyTemplate1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="SearchName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SurveyTemplateDevice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TemplateGuid" Type="Guid" Nullable="false" />
+    <Property Name="DeviceGuid" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SurveyTemplatePatient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TemplateGuid" Type="Guid" Nullable="false" />
+    <Property Name="PatientGuid" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SurveyTemplateProfession">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TemplateGuid" Type="Guid" Nullable="false" />
+    <Property Name="ProfessionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Post" Relationship="Self.SurveyTemplateProfession_ProfessionId_fk" FromRole="SurveyTemplateProfession" ToRole="Post" />
+  </EntityType>
+  <EntityType Name="SurveyType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DocumentGuid" Type="Guid" />
+    <Property Name="RepeatDocumentGuid" Type="Guid" />
+    <Property Name="SearchName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PatientTable">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="MiddleName" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="IsArchive" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" />
+    <Property Name="Version" Type="Int32" />
+    <Property Name="LastName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="3002" FixedLength="false" Unicode="false" />
+    <Property Name="ShortName" Type="String" MaxLength="1008" FixedLength="false" Unicode="false" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="Years" Type="Int32" />
+    <Property Name="SEX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SeriyaPolisa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NomerPolis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InsuranceCompany" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InsuranceDateFrom" Type="DateTime" Precision="0" />
+    <Property Name="InsuranceDateTo" Type="DateTime" Precision="0" />
+    <Property Name="AttachmentOrganisation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SECTOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MedCardNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NumberAmb" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SNILS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LgotDrug" Type="Boolean" />
+    <Property Name="JobTabNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HomePhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MobilePhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ChatId" Type="Int32" />
+    <Property Name="PlaceOfJob" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OrganisationGuid" Type="Guid" />
+    <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Profession" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="WorkPhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobFactory" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobSection" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobDepartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobCharacter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobCondition" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobBeginDate" Type="DateTime" Precision="0" />
+    <Property Name="JobEndDate" Type="DateTime" Precision="0" />
+    <Property Name="PostId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProfessionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PatientLgot" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalOtkazOtDlo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalOsvidetPodlezhit" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalDopZakl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalPredGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalOgranichStepen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalLgotCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalDataOcherednogoOsvidetel" Type="DateTime" Precision="3" />
+    <Property Name="InvalPrichinaSnyatiya" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalDataSnyatiya" Type="DateTime" Precision="3" />
+    <Property Name="InvalSeriya" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalFioVracha" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalPervich" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalVidan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalDataVidachi" Type="DateTime" Precision="3" />
+    <Property Name="InvalItog" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalNomer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalDataUstanovleniya" Type="DateTime" Precision="3" />
+    <Property Name="InvalMkbCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalSrok" Type="DateTime" Precision="3" />
+    <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="PaspKemVidan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PaspSeries" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PaspNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PaspDataVidachi" Type="DateTime" Precision="3" />
+    <Property Name="IdentityDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PasportFromDate" Type="DateTime" Precision="0" />
+    <Property Name="PasportToDate" Type="DateTime" Precision="0" />
+    <Property Name="DepartmentCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InfoSource" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsArchive" Type="Boolean" Nullable="false" />
+    <Property Name="PaymentMethodId" Type="Int32" />
+    <Property Name="PaymentMethod" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PersonelNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="SearchFirstName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchLastName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchMiddleName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchPhone" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchComment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchFullName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Citizenship" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NotificationSmsEnable" Type="Boolean" />
+    <Property Name="NotificationMailEnable" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="BriefingReportSettingsEmployee">
+    <Key>
+      <PropertyRef Name="SettingsId" />
+      <PropertyRef Name="EmployeeGuid" />
+    </Key>
+    <Property Name="SettingsId" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeGuid" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="BriefingReportSettings" Relationship="Self.BriefingReportSettingsEmployee_SettingsId_fk" FromRole="BriefingReportSettingsEmployee" ToRole="BriefingReportSettings" />
+  </EntityType>
+  <EntityType Name="PatientFullInfo">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="MiddleName" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="IsArchive" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" />
+    <Property Name="Version" Type="Int32" />
+    <Property Name="LastName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="3002" FixedLength="false" Unicode="false" />
+    <Property Name="ShortName" Type="String" MaxLength="1008" FixedLength="false" Unicode="false" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="Years" Type="Int32" />
+    <Property Name="SEX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SeriyaPolisa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NomerPolis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InsuranceCompany" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InsuranceDateFrom" Type="DateTime" Precision="0" />
+    <Property Name="InsuranceDateTo" Type="DateTime" Precision="0" />
+    <Property Name="AttachmentOrganisation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SECTOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MedCardNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NumberAmb" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SNILS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LgotDrug" Type="Boolean" />
+    <Property Name="JobTabNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HomePhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MobilePhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ChatId" Type="Int32" />
+    <Property Name="PlaceOfJob" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OrganisationGuid" Type="Guid" />
+    <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Profession" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="WorkPhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobFactory" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobSection" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobDepartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobCharacter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobCondition" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JobBeginDate" Type="DateTime" Precision="0" />
+    <Property Name="JobEndDate" Type="DateTime" Precision="0" />
+    <Property Name="PostId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProfessionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PatientLgot" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalOtkazOtDlo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalOsvidetPodlezhit" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalDopZakl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalPredGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalOgranichStepen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalLgotCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalDataOcherednogoOsvidetel" Type="DateTime" Precision="3" />
+    <Property Name="InvalPrichinaSnyatiya" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalDataSnyatiya" Type="DateTime" Precision="3" />
+    <Property Name="InvalSeriya" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalFioVracha" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalPervich" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalVidan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalDataVidachi" Type="DateTime" Precision="3" />
+    <Property Name="InvalItog" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalNomer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalDataUstanovleniya" Type="DateTime" Precision="3" />
+    <Property Name="InvalMkbCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvalSrok" Type="DateTime" Precision="3" />
+    <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="PaspKemVidan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PaspSeries" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PaspNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PaspDataVidachi" Type="DateTime" Precision="3" />
+    <Property Name="IdentityDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PasportFromDate" Type="DateTime" Precision="0" />
+    <Property Name="PasportToDate" Type="DateTime" Precision="0" />
+    <Property Name="DepartmentCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InfoSource" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsArchive" Type="Boolean" Nullable="false" />
+    <Property Name="PaymentMethodId" Type="Int32" />
+    <Property Name="PaymentMethod" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PersonelNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="SearchFirstName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchLastName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchMiddleName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchPhone" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchComment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SearchFullName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Citizenship" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NotificationSmsEnable" Type="Boolean" />
+    <Property Name="NotificationMailEnable" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="InstructionBlitzInfo">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="RecordVersion" />
+      <PropertyRef Name="IsBlocked" />
+      <PropertyRef Name="IsArchive" />
+    </Key>
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="RecordVersion" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ButtonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SearchNumber" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="SearchName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FileCount" Type="Int32" />
+    <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+    <Property Name="IsArchive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionInfo">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="CurrentVersion" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="RecordVersion" />
+      <PropertyRef Name="IsArchive" />
+    </Key>
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="CurrentVersion" Type="Int32" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="RecordVersion" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Version" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SearchCode" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="SearchName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FileCount" Type="Int32" />
+    <Property Name="IsArchive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionProfessionInfo">
+    <Key>
+      <PropertyRef Name="InstructionGuid" />
+      <PropertyRef Name="ProfessionId" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="InstructionGuid" Type="Guid" Nullable="false" />
+    <Property Name="ProfessionId" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="InstructionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProfessionName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="QuestionAnswerInfo">
+    <Key>
+      <PropertyRef Name="QuestionGuid" />
+      <PropertyRef Name="SystemNumber" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="RecordVersion" />
+    </Key>
+    <Property Name="QuestionGuid" Type="Guid" Nullable="false" />
+    <Property Name="SystemNumber" Type="Int32" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="RecordVersion" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Code" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Correct" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="CorrectId" Type="Int32" />
+    <Property Name="LegalAct" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DocumentParagraph" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="QuestionInfo">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="RecordVersion" />
+    </Key>
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="RecordVersion" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Code" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Text" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SearchCode" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="SearchName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="SearchText" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SurveyAnswerInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="PatientGuid" />
+      <PropertyRef Name="SurveyId" />
+      <PropertyRef Name="QuestionGuid" />
+      <PropertyRef Name="QuestionVersionNumber" />
+      <PropertyRef Name="SelectedAnswerTypeId" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="PatientGuid" Type="Guid" Nullable="false" />
+    <Property Name="QuestionCategoryId" Type="Int32" />
+    <Property Name="SurveyId" Type="Int32" Nullable="false" />
+    <Property Name="QuestionGuid" Type="Guid" Nullable="false" />
+    <Property Name="QuestionVersionNumber" Type="Int32" Nullable="false" />
+    <Property Name="QuestionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SelectedAnswerNumber" Type="Int32" />
+    <Property Name="SelectedAnswerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SelectedAnswerTypeId" Type="Int32" Nullable="false" />
+    <Property Name="CorrectAnswerNumber" Type="Int32" />
+    <Property Name="CorrectAnswerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SurveyTemplateDeviceInfo">
+    <Key>
+      <PropertyRef Name="TemplateGuid" />
+      <PropertyRef Name="DeviceGuid" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="TemplateGuid" Type="Guid" Nullable="false" />
+    <Property Name="DeviceGuid" Type="Guid" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TemplateName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DeviceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SurveyTemplateFullInfo">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="VersionNumber" />
+    </Key>
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="VersionNumber" Type="Int32" Nullable="false" />
+    <Property Name="SurveyTypeDocumentGuid" Type="Guid" />
+    <Property Name="SurveyTypeRepeatDocumentGuid" Type="Guid" />
+    <Property Name="ButtonName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="QuestionEnable" Type="Boolean" />
+    <Property Name="QuestionMeasurementOrder" Type="Int32" />
+    <Property Name="QuestionIsLearningMode" Type="Boolean" />
+    <Property Name="QuestionIsLearningModeRepeat" Type="Boolean" />
+    <Property Name="QuestionIsLearningModeRepeatIsCorrect" Type="Boolean" />
+    <Property Name="QuestionTime" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SurveyTemplateInfo">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="VersionNumber" />
+    </Key>
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="RecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="VersionNumber" Type="Int32" Nullable="false" />
+    <Property Name="SurveyTypeDocumentGuid" Type="Guid" />
+    <Property Name="SurveyTypeRepeatDocumentGuid" Type="Guid" />
+    <Property Name="ButtonName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SurveyTemplatePatientInfo">
+    <Key>
+      <PropertyRef Name="TemplateGuid" />
+      <PropertyRef Name="PatientGuid" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="TemplateGuid" Type="Guid" Nullable="false" />
+    <Property Name="PatientGuid" Type="Guid" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TemplateName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PatientName" Type="String" MaxLength="3002" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SurveyTemplateProfessionInfo">
+    <Key>
+      <PropertyRef Name="TemplateGuid" />
+      <PropertyRef Name="ProfessionId" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="TemplateGuid" Type="Guid" Nullable="false" />
+    <Property Name="ProfessionId" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TemplateName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ProfessionName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SurveyTemplateQuestionCategory">
+    <Key>
+      <PropertyRef Name="TemplateGuid" />
+      <PropertyRef Name="TemplateRecordGuid" />
+      <PropertyRef Name="TemplateVersionNumber" />
+      <PropertyRef Name="QuestionCount" />
+      <PropertyRef Name="QuestionCategoryId" />
+    </Key>
+    <Property Name="TemplateGuid" Type="Guid" Nullable="false" />
+    <Property Name="TemplateRecordSystemNumber" Type="Int32" />
+    <Property Name="TemplateRecordGuid" Type="Guid" Nullable="false" />
+    <Property Name="TemplateVersionNumber" Type="Int32" Nullable="false" />
+    <Property Name="QuestionCount" Type="Int32" Nullable="false" />
+    <Property Name="QuestionOrder" Type="Int32" />
+    <Property Name="QuestionCategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="QuestionCategoryId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="Patient_RecordGuid_fk">
+    <End Role="Record" Type="Self.Record" Multiplicity="1" />
+    <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Record">
+        <PropertyRef Name="Guid" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="RecordGuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PatientRelation_TypeId_fk">
+    <End Role="PatientRelationType" Type="Self.PatientRelationType" Multiplicity="1" />
+    <End Role="PatientRelation" Type="Self.PatientRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientRelationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientRelation">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PatientStatus_StatusId_fk">
+    <End Role="PatientStatusType" Type="Self.PatientStatusType" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PatientStatus" Type="Self.PatientStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientStatusType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientStatus">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AttachedFile_FolderId_fk">
+    <End Role="AttachedFileFolder" Type="Self.AttachedFileFolder" Multiplicity="0..1" />
+    <End Role="AttachedFile" Type="Self.AttachedFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AttachedFileFolder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AttachedFile">
+        <PropertyRef Name="FolderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BriefingAttachedFile_FileGuid_fk">
+    <End Role="AttachedFile" Type="Self.AttachedFile" Multiplicity="1" />
+    <End Role="BriefingAttachedFile" Type="Self.BriefingAttachedFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AttachedFile">
+        <PropertyRef Name="Guid" />
+      </Principal>
+      <Dependent Role="BriefingAttachedFile">
+        <PropertyRef Name="FileGuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InstructionBlitzFile_FileGuid_fk">
+    <End Role="AttachedFile" Type="Self.AttachedFile" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InstructionBlitzFile" Type="Self.InstructionBlitzFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AttachedFile">
+        <PropertyRef Name="Guid" />
+      </Principal>
+      <Dependent Role="InstructionBlitzFile">
+        <PropertyRef Name="FileGuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InstructionFile_FileGuid_fk">
+    <End Role="AttachedFile" Type="Self.AttachedFile" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InstructionFile" Type="Self.InstructionFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AttachedFile">
+        <PropertyRef Name="Guid" />
+      </Principal>
+      <Dependent Role="InstructionFile">
+        <PropertyRef Name="FileGuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SurveyAttachedFile_FileGuid_fk">
+    <End Role="AttachedFile" Type="Self.AttachedFile" Multiplicity="1" />
+    <End Role="SurveyAttachedFile" Type="Self.SurveyAttachedFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AttachedFile">
+        <PropertyRef Name="Guid" />
+      </Principal>
+      <Dependent Role="SurveyAttachedFile">
+        <PropertyRef Name="FileGuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InstructionProfession_ProfessionId_fk">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="InstructionProfession" Type="Self.InstructionProfession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="InstructionProfession">
+        <PropertyRef Name="ProfessionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SurveyTemplateProfession_ProfessionId_fk">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="SurveyTemplateProfession" Type="Self.SurveyTemplateProfession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SurveyTemplateProfession">
+        <PropertyRef Name="ProfessionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserProfilePhoto_UserId_fk">
+    <End Role="User" Type="Self.User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserProfilePhoto" Type="Self.UserProfilePhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfilePhoto">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BriefingAttachedFile_BriefingId_fk">
+    <End Role="Briefing" Type="Self.Briefing" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BriefingAttachedFile" Type="Self.BriefingAttachedFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Briefing">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BriefingAttachedFile">
+        <PropertyRef Name="BriefingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BriefingReportSettingsEmployee_SettingsId_fk">
+    <End Role="BriefingReportSettings" Type="Self.BriefingReportSettings" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BriefingReportSettingsEmployee" Type="Self.BriefingReportSettingsEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BriefingReportSettings">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BriefingReportSettingsEmployee">
+        <PropertyRef Name="SettingsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SurveyAnswer_SurveyId_fk">
+    <End Role="Survey" Type="Self.Survey" Multiplicity="1" />
+    <End Role="SurveyAnswer" Type="Self.SurveyAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Survey">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SurveyAnswer">
+        <PropertyRef Name="SurveyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SurveyAttachedFile_SurveyId_fk">
+    <End Role="Survey" Type="Self.Survey" Multiplicity="1" />
+    <End Role="SurveyAttachedFile" Type="Self.SurveyAttachedFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Survey">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SurveyAttachedFile">
+        <PropertyRef Name="SurveyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ReportSettingsEmployee_SettingsId_fk">
+    <End Role="SurveyReportSettings" Type="Self.SurveyReportSettings" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SurveyReportSettingsEmployee" Type="Self.SurveyReportSettingsEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SurveyReportSettings">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SurveyReportSettingsEmployee">
+        <PropertyRef Name="SettingsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WorkProtectionEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Patient" EntityType="Self.Patient" />
+    <EntitySet Name="PatientDactilography" EntityType="Self.PatientDactilography" />
+    <EntitySet Name="PatientPhoto" EntityType="Self.PatientPhoto" />
+    <EntitySet Name="PatientRelation" EntityType="Self.PatientRelation" />
+    <EntitySet Name="PatientRelationType" EntityType="Self.PatientRelationType" />
+    <EntitySet Name="PatientStatus" EntityType="Self.PatientStatus" />
+    <EntitySet Name="PatientStatusType" EntityType="Self.PatientStatusType" />
+    <EntitySet Name="AttachedFile" EntityType="Self.AttachedFile" />
+    <EntitySet Name="AttachedFileFolder" EntityType="Self.AttachedFileFolder" />
+    <EntitySet Name="Record" EntityType="Self.Record" />
+    <EntitySet Name="Post" EntityType="Self.Post" />
+    <EntitySet Name="Instruction" EntityType="Self.Instruction" />
+    <EntitySet Name="Question" EntityType="Self.Question" />
+    <EntitySet Name="QuestionAnswer" EntityType="Self.QuestionAnswer" />
+    <EntitySet Name="SettingsAnketa" EntityType="Self.SettingsAnketa" />
+    <EntitySet Name="SettingsAnketaQuestionCategory" EntityType="Self.SettingsAnketaQuestionCategory" />
+    <EntitySet Name="SurveyTemplate" EntityType="Self.SurveyTemplate" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="UserProfilePhoto" EntityType="Self.UserProfilePhoto" />
+    <EntitySet Name="Briefing" EntityType="Self.Briefing" />
+    <EntitySet Name="BriefingAttachedFile" EntityType="Self.BriefingAttachedFile" />
+    <EntitySet Name="BriefingReport" EntityType="Self.BriefingReport" />
+    <EntitySet Name="BriefingReportSettings" EntityType="Self.BriefingReportSettings" />
+    <EntitySet Name="Instruction1" EntityType="Self.Instruction1" />
+    <EntitySet Name="InstructionBlitz" EntityType="Self.InstructionBlitz" />
+    <EntitySet Name="InstructionBlitzCategory" EntityType="Self.InstructionBlitzCategory" />
+    <EntitySet Name="InstructionBlitzFile" EntityType="Self.InstructionBlitzFile" />
+    <EntitySet Name="InstructionCategory" EntityType="Self.InstructionCategory" />
+    <EntitySet Name="InstructionFile" EntityType="Self.InstructionFile" />
+    <EntitySet Name="InstructionProfession" EntityType="Self.InstructionProfession" />
+    <EntitySet Name="InstructionSettings" EntityType="Self.InstructionSettings" />
+    <EntitySet Name="Question1" EntityType="Self.Question1" />
+    <EntitySet Name="QuestionAnswerCorrectPercent" EntityType="Self.QuestionAnswerCorrectPercent" />
+    <EntitySet Name="QuestionCategory" EntityType="Self.QuestionCategory" />
+    <EntitySet Name="Survey" EntityType="Self.Survey" />
+    <EntitySet Name="SurveyAnswer" EntityType="Self.SurveyAnswer" />
+    <EntitySet Name="SurveyAttachedFile" EntityType="Self.SurveyAttachedFile" />
+    <EntitySet Name="SurveyReport" EntityType="Self.SurveyReport" />
+    <EntitySet Name="SurveyReportSettings" EntityType="Self.SurveyReportSettings" />
+    <EntitySet Name="SurveyReportSettingsEmployee" EntityType="Self.SurveyReportSettingsEmployee" />
+    <EntitySet Name="SurveyTemplate1" EntityType="Self.SurveyTemplate1" />
+    <EntitySet Name="SurveyTemplateDevice" EntityType="Self.SurveyTemplateDevice" />
+    <EntitySet Name="SurveyTemplatePatient" EntityType="Self.SurveyTemplatePatient" />
+    <EntitySet Name="SurveyTemplateProfession" EntityType="Self.SurveyTemplateProfession" />
+    <EntitySet Name="SurveyType" EntityType="Self.SurveyType" />
+    <EntitySet Name="PatientTable" EntityType="Self.PatientTable" />
+    <EntitySet Name="BriefingReportSettingsEmployee" EntityType="Self.BriefingReportSettingsEmployee" />
+    <EntitySet Name="PatientFullInfo" EntityType="Self.PatientFullInfo" />
+    <EntitySet Name="InstructionBlitzInfo" EntityType="Self.InstructionBlitzInfo" />
+    <EntitySet Name="InstructionInfo" EntityType="Self.InstructionInfo" />
+    <EntitySet Name="InstructionProfessionInfo" EntityType="Self.InstructionProfessionInfo" />
+    <EntitySet Name="QuestionAnswerInfo" EntityType="Self.QuestionAnswerInfo" />
+    <EntitySet Name="QuestionInfo" EntityType="Self.QuestionInfo" />
+    <EntitySet Name="SurveyAnswerInfo" EntityType="Self.SurveyAnswerInfo" />
+    <EntitySet Name="SurveyTemplateDeviceInfo" EntityType="Self.SurveyTemplateDeviceInfo" />
+    <EntitySet Name="SurveyTemplateFullInfo" EntityType="Self.SurveyTemplateFullInfo" />
+    <EntitySet Name="SurveyTemplateInfo" EntityType="Self.SurveyTemplateInfo" />
+    <EntitySet Name="SurveyTemplatePatientInfo" EntityType="Self.SurveyTemplatePatientInfo" />
+    <EntitySet Name="SurveyTemplateProfessionInfo" EntityType="Self.SurveyTemplateProfessionInfo" />
+    <EntitySet Name="SurveyTemplateQuestionCategory" EntityType="Self.SurveyTemplateQuestionCategory" />
+    <AssociationSet Name="Patient_RecordGuid_fk" Association="Self.Patient_RecordGuid_fk">
+      <End Role="Record" EntitySet="Record" />
+      <End Role="Patient" EntitySet="Patient" />
+    </AssociationSet>
+    <AssociationSet Name="PatientRelation_TypeId_fk" Association="Self.PatientRelation_TypeId_fk">
+      <End Role="PatientRelationType" EntitySet="PatientRelationType" />
+      <End Role="PatientRelation" EntitySet="PatientRelation" />
+    </AssociationSet>
+    <AssociationSet Name="PatientStatus_StatusId_fk" Association="Self.PatientStatus_StatusId_fk">
+      <End Role="PatientStatusType" EntitySet="PatientStatusType" />
+      <End Role="PatientStatus" EntitySet="PatientStatus" />
+    </AssociationSet>
+    <AssociationSet Name="AttachedFile_FolderId_fk" Association="Self.AttachedFile_FolderId_fk">
+      <End Role="AttachedFileFolder" EntitySet="AttachedFileFolder" />
+      <End Role="AttachedFile" EntitySet="AttachedFile" />
+    </AssociationSet>
+    <AssociationSet Name="BriefingAttachedFile_FileGuid_fk" Association="Self.BriefingAttachedFile_FileGuid_fk">
+      <End Role="AttachedFile" EntitySet="AttachedFile" />
+      <End Role="BriefingAttachedFile" EntitySet="BriefingAttachedFile" />
+    </AssociationSet>
+    <AssociationSet Name="InstructionBlitzFile_FileGuid_fk" Association="Self.InstructionBlitzFile_FileGuid_fk">
+      <End Role="AttachedFile" EntitySet="AttachedFile" />
+      <End Role="InstructionBlitzFile" EntitySet="InstructionBlitzFile" />
+    </AssociationSet>
+    <AssociationSet Name="InstructionFile_FileGuid_fk" Association="Self.InstructionFile_FileGuid_fk">
+      <End Role="AttachedFile" EntitySet="AttachedFile" />
+      <End Role="InstructionFile" EntitySet="InstructionFile" />
+    </AssociationSet>
+    <AssociationSet Name="SurveyAttachedFile_FileGuid_fk" Association="Self.SurveyAttachedFile_FileGuid_fk">
+      <End Role="AttachedFile" EntitySet="AttachedFile" />
+      <End Role="SurveyAttachedFile" EntitySet="SurveyAttachedFile" />
+    </AssociationSet>
+    <AssociationSet Name="InstructionProfession_ProfessionId_fk" Association="Self.InstructionProfession_ProfessionId_fk">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="InstructionProfession" EntitySet="InstructionProfession" />
+    </AssociationSet>
+    <AssociationSet Name="SurveyTemplateProfession_ProfessionId_fk" Association="Self.SurveyTemplateProfession_ProfessionId_fk">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="SurveyTemplateProfession" EntitySet="SurveyTemplateProfession" />
+    </AssociationSet>
+    <AssociationSet Name="UserProfilePhoto_UserId_fk" Association="Self.UserProfilePhoto_UserId_fk">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserProfilePhoto" EntitySet="UserProfilePhoto" />
+    </AssociationSet>
+    <AssociationSet Name="BriefingAttachedFile_BriefingId_fk" Association="Self.BriefingAttachedFile_BriefingId_fk">
+      <End Role="Briefing" EntitySet="Briefing" />
+      <End Role="BriefingAttachedFile" EntitySet="BriefingAttachedFile" />
+    </AssociationSet>
+    <AssociationSet Name="BriefingReportSettingsEmployee_SettingsId_fk" Association="Self.BriefingReportSettingsEmployee_SettingsId_fk">
+      <End Role="BriefingReportSettings" EntitySet="BriefingReportSettings" />
+      <End Role="BriefingReportSettingsEmployee" EntitySet="BriefingReportSettingsEmployee" />
+    </AssociationSet>
+    <AssociationSet Name="SurveyAnswer_SurveyId_fk" Association="Self.SurveyAnswer_SurveyId_fk">
+      <End Role="Survey" EntitySet="Survey" />
+      <End Role="SurveyAnswer" EntitySet="SurveyAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="SurveyAttachedFile_SurveyId_fk" Association="Self.SurveyAttachedFile_SurveyId_fk">
+      <End Role="Survey" EntitySet="Survey" />
+      <End Role="SurveyAttachedFile" EntitySet="SurveyAttachedFile" />
+    </AssociationSet>
+    <AssociationSet Name="ReportSettingsEmployee_SettingsId_fk" Association="Self.ReportSettingsEmployee_SettingsId_fk">
+      <End Role="SurveyReportSettings" EntitySet="SurveyReportSettings" />
+      <End Role="SurveyReportSettingsEmployee" EntitySet="SurveyReportSettingsEmployee" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

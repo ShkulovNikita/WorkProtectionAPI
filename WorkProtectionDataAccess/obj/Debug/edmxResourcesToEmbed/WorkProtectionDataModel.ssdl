@@ -1,0 +1,1713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище WorkProtectionModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SearchFirstName" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchLastName" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchMiddleName" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchPhone" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchAddress" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchComment" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchFullName" Type="varchar" MaxLength="1000" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientDactilography">
+    <Key>
+      <PropertyRef Name="PatientGuid" />
+    </Key>
+    <Property Name="PatientGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LeftIndex" Type="nvarchar(max)" />
+    <Property Name="LeftMiddle" Type="nvarchar(max)" />
+    <Property Name="LeftRing" Type="nvarchar(max)" />
+    <Property Name="LeftLittle" Type="nvarchar(max)" />
+    <Property Name="LeftThumb" Type="nvarchar(max)" />
+    <Property Name="RightIndex" Type="nvarchar(max)" />
+    <Property Name="RightMiddle" Type="nvarchar(max)" />
+    <Property Name="RightRing" Type="nvarchar(max)" />
+    <Property Name="RightLittle" Type="nvarchar(max)" />
+    <Property Name="RightThumb" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="PatientPhoto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PhotoOriginal" Type="text" />
+    <Property Name="Photo128" Type="text" />
+    <Property Name="isVerifed" Type="bit" />
+    <Property Name="isDeleted" Type="bit" />
+    <Property Name="SrcOriginal" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Src600" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Src200" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Src50" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="PatientRelation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentPatientGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ChieldPatientGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="DateTo" Type="date" />
+    <Property Name="DateFrom" Type="date" />
+    <Property Name="IsArchive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientRelationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="ParentName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="ChieldName" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientStatusType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Icon" Type="text" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.Patient.PatientTable" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="PatientTable">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="MiddleName" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="IsArchive" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" />
+    <Property Name="Version" Type="int" />
+    <Property Name="LastName" Type="varchar" MaxLength="1000" />
+    <Property Name="FirstName" Type="varchar" MaxLength="1000" />
+    <Property Name="MiddleName" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="3002" />
+    <Property Name="ShortName" Type="varchar" MaxLength="1008" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="Years" Type="int" />
+    <Property Name="SEX" Type="varchar(max)" />
+    <Property Name="SeriyaPolisa" Type="varchar(max)" />
+    <Property Name="NomerPolis" Type="varchar(max)" />
+    <Property Name="InsuranceCompany" Type="varchar(max)" />
+    <Property Name="InsuranceDateFrom" Type="date" />
+    <Property Name="InsuranceDateTo" Type="date" />
+    <Property Name="AttachmentOrganisation" Type="varchar(max)" />
+    <Property Name="SECTOR" Type="varchar(max)" />
+    <Property Name="Code" Type="varchar(max)" />
+    <Property Name="Comment" Type="varchar(max)" />
+    <Property Name="MedCardNum" Type="varchar(max)" />
+    <Property Name="NumberAmb" Type="varchar(max)" />
+    <Property Name="SNILS" Type="varchar(max)" />
+    <Property Name="LgotDrug" Type="bit" />
+    <Property Name="JobTabNumber" Type="varchar(max)" />
+    <Property Name="HomePhoneNumber" Type="varchar(max)" />
+    <Property Name="MobilePhoneNumber" Type="varchar(max)" />
+    <Property Name="ChatId" Type="int" />
+    <Property Name="PlaceOfJob" Type="varchar(max)" />
+    <Property Name="OrganisationGuid" Type="uniqueidentifier" />
+    <Property Name="Post" Type="varchar(max)" />
+    <Property Name="Profession" Type="varchar(max)" />
+    <Property Name="WorkPhoneNumber" Type="varchar(max)" />
+    <Property Name="JobComment" Type="varchar(max)" />
+    <Property Name="JobFactory" Type="varchar(max)" />
+    <Property Name="JobSection" Type="varchar(max)" />
+    <Property Name="JobDepartment" Type="varchar(max)" />
+    <Property Name="JobCharacter" Type="varchar(max)" />
+    <Property Name="JobCondition" Type="varchar(max)" />
+    <Property Name="JobBeginDate" Type="date" />
+    <Property Name="JobEndDate" Type="date" />
+    <Property Name="PostId" Type="varchar(max)" />
+    <Property Name="ProfessionId" Type="varchar(max)" />
+    <Property Name="PatientLgot" Type="varchar(max)" />
+    <Property Name="InvalGroup" Type="varchar(max)" />
+    <Property Name="InvalOtkazOtDlo" Type="varchar(max)" />
+    <Property Name="InvalOsvidetPodlezhit" Type="varchar(max)" />
+    <Property Name="InvalDopZakl" Type="varchar(max)" />
+    <Property Name="InvalReason" Type="varchar(max)" />
+    <Property Name="InvalPredGroup" Type="varchar(max)" />
+    <Property Name="InvalOgranichStepen" Type="varchar(max)" />
+    <Property Name="InvalLgotCode" Type="varchar(max)" />
+    <Property Name="InvalDataOcherednogoOsvidetel" Type="datetime" />
+    <Property Name="InvalPrichinaSnyatiya" Type="varchar(max)" />
+    <Property Name="InvalDataSnyatiya" Type="datetime" />
+    <Property Name="InvalSeriya" Type="varchar(max)" />
+    <Property Name="InvalFioVracha" Type="varchar(max)" />
+    <Property Name="InvalPervich" Type="varchar(max)" />
+    <Property Name="InvalVidan" Type="varchar(max)" />
+    <Property Name="InvalDataVidachi" Type="datetime" />
+    <Property Name="InvalItog" Type="varchar(max)" />
+    <Property Name="InvalNomer" Type="varchar(max)" />
+    <Property Name="InvalDataUstanovleniya" Type="datetime" />
+    <Property Name="InvalMkbCode" Type="varchar(max)" />
+    <Property Name="InvalComment" Type="varchar(max)" />
+    <Property Name="InvalSrok" Type="datetime" />
+    <Property Name="Login" Type="varchar" MaxLength="100" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="PaspKemVidan" Type="varchar(max)" />
+    <Property Name="PaspSeries" Type="varchar(max)" />
+    <Property Name="PaspNumber" Type="varchar(max)" />
+    <Property Name="PaspDataVidachi" Type="datetime" />
+    <Property Name="IdentityDocument" Type="varchar(max)" />
+    <Property Name="PasportFromDate" Type="date" />
+    <Property Name="PasportToDate" Type="date" />
+    <Property Name="DepartmentCode" Type="varchar(max)" />
+    <Property Name="EMAIL" Type="varchar(max)" />
+    <Property Name="InfoSource" Type="varchar(max)" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsArchive" Type="bit" Nullable="false" />
+    <Property Name="PaymentMethodId" Type="int" />
+    <Property Name="PaymentMethod" Type="varchar(max)" />
+    <Property Name="PersonelNumber" Type="varchar(max)" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="SearchFirstName" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchLastName" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchMiddleName" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchPhone" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchAddress" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchComment" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchFullName" Type="varchar" MaxLength="1000" />
+    <Property Name="Citizenship" Type="varchar(max)" />
+    <Property Name="NotificationSmsEnable" Type="bit" />
+    <Property Name="NotificationMailEnable" Type="bit" />
+  </EntityType>
+  <EntityType Name="AttachedFile">
+    <Key>
+      <PropertyRef Name="Guid" />
+    </Key>
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Path" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="FolderId" Type="int" />
+  </EntityType>
+  <EntityType Name="AttachedFileFolder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Record">
+    <Key>
+      <PropertyRef Name="Guid" />
+    </Key>
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DocumentGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsArchive" Type="bit" Nullable="false" />
+    <Property Name="LastVersionGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsSystem" Type="bit" />
+    <Property Name="DocumentNameGuid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="P_ID" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="1000" />
+    <Property Name="OKPDTR" Type="char" MaxLength="10" />
+    <Property Name="OKZ" Type="char" MaxLength="10" />
+    <Property Name="KCS" Type="char" MaxLength="10" />
+    <Property Name="TARIFF" Type="char" MaxLength="10" />
+    <Property Name="ETKS" Type="char" MaxLength="10" />
+    <Property Name="CATEGOGY" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Instruction">
+    <Key>
+      <PropertyRef Name="VersionId" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="VersionId" Type="int" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="InstructionVersion" Type="int" />
+    <Property Name="InstructionDate" Type="date" />
+    <Property Name="InstructionName" Type="varchar(max)" />
+    <Property Name="InstructionCode" Type="varchar(max)" />
+    <Property Name="InstructionComment" Type="varchar(max)" />
+    <Property Name="InstructionCategory" Type="varchar(max)" />
+    <Property Name="InstructionCategoryId" Type="int" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="VersionId" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="VersionId" Type="int" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="QuestionCategoryId" Type="int" />
+    <Property Name="QuestionCode" Type="varchar" MaxLength="1000" />
+    <Property Name="QuestionName" Type="varchar(max)" />
+    <Property Name="QuestionComment" Type="varchar(max)" />
+    <Property Name="QuestionCategory" Type="varchar(max)" />
+    <Property Name="QuestionText" Type="varchar" MaxLength="1000" />
+    <Property Name="QuestionImage" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="QuestionAnswer">
+    <Key>
+      <PropertyRef Name="VersionId" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="VersionId" Type="int" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="AnswerComment" Type="varchar(max)" />
+    <Property Name="AnswerCode" Type="varchar" MaxLength="1000" />
+    <Property Name="AnswerCorrect" Type="varchar" MaxLength="1000" />
+    <Property Name="AnswerName" Type="varchar(max)" />
+    <Property Name="AnswerCorrectId" Type="int" />
+    <Property Name="Normativno_pravovoy_akt" Type="varchar(max)" />
+    <Property Name="Punkt_dokumenta" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="SettingsAnketa">
+    <Key>
+      <PropertyRef Name="VersionId" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="VersionId" Type="int" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Izmeryatj_parametr" Type="bit" />
+    <Property Name="Poryadok_prohozhdeniya" Type="int" />
+    <Property Name="Rezhim_obucheniya" Type="bit" />
+    <Property Name="SurveyTime" Type="int" />
+    <Property Name="RepeatQuestion" Type="bit" />
+    <Property Name="RepeatQuestionIsCorrect" Type="bit" />
+  </EntityType>
+  <EntityType Name="SettingsAnketaQuestionCategory">
+    <Key>
+      <PropertyRef Name="VersionId" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="VersionId" Type="int" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Poryadok_prohozhdeniya" Type="int" />
+    <Property Name="QuestionCategory" Type="varchar(max)" />
+    <Property Name="QuestionCategoryId" Type="int" />
+    <Property Name="Kolichestvo_voprosov" Type="int" />
+  </EntityType>
+  <EntityType Name="SurveyTemplate">
+    <Key>
+      <PropertyRef Name="VersionId" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="VersionId" Type="int" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="SurveyButtonName" Type="varchar" MaxLength="200" />
+    <Property Name="SurveyType" Type="varchar" MaxLength="200" />
+    <Property Name="SurveyComment" Type="varchar(max)" />
+    <Property Name="SurveyName" Type="varchar" MaxLength="200" />
+    <Property Name="SurveyTypeDocumentGuid" Type="uniqueidentifier" />
+    <Property Name="SurveyTypeRepeatDocumentGuid" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+    <Property Name="IsBlocked" Type="bit" Nullable="false" />
+    <Property Name="IsRestorePassword" Type="bit" />
+    <Property Name="Token" Type="varchar(max)" />
+    <Property Name="SecondStepOfAuthentication" Type="bit" Nullable="false" />
+    <Property Name="EndDateBlocking" Type="datetime" />
+    <Property Name="SendEmailDate" Type="datetime" />
+    <Property Name="LastMessageNumber" Type="int" />
+    <Property Name="KeyForRestorePassword" Type="nvarchar" MaxLength="300" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsTestUser" Type="bit" />
+    <Property Name="SipId" Type="int" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="GuidByDomain" Type="uniqueidentifier" />
+    <Property Name="LoginByDomain" Type="varchar" MaxLength="100" />
+    <Property Name="isPasswordUnlimited" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserProfilePhoto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="PhotoOriginal" Type="text" />
+    <Property Name="Photo128" Type="text" />
+    <Property Name="Photo32" Type="text" />
+    <Property Name="SrcOriginal" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Src600" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Src200" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Src50" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Briefing">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="PatientGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InstructionGuid" Type="uniqueidentifier" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="TimeSeconds" Type="int" Nullable="false" />
+    <Property Name="DeviceGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InstructionVersion" Type="int" />
+    <Property Name="InstructionType" Type="int" Nullable="false" />
+    <Property Name="BlitzInstructionGuid" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="BriefingAttachedFile">
+    <Key>
+      <PropertyRef Name="BriefingId" />
+      <PropertyRef Name="FileGuid" />
+    </Key>
+    <Property Name="BriefingId" Type="int" Nullable="false" />
+    <Property Name="FileGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="BriefingReport">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PeriodType" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="PrintFormPath" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MailTo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="SettingsId" Type="int" />
+    <Property Name="DateFrom" Type="datetime" Nullable="false" />
+    <Property Name="DateTo" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BriefingReportSettings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsEnable" Type="bit" Nullable="false" />
+    <Property Name="PeriodType" Type="int" Nullable="false" />
+    <Property Name="PrintFormPath" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.BriefingReportSettingsEmployee" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="BriefingReportSettingsEmployee">
+    <Key>
+      <PropertyRef Name="SettingsId" />
+      <PropertyRef Name="EmployeeGuid" />
+    </Key>
+    <Property Name="SettingsId" Type="int" Nullable="false" />
+    <Property Name="EmployeeGuid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Instruction1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SearchName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="SearchCode" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CurrentVersion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionBlitz">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SearchName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="SearchNumber" Type="nvarchar" MaxLength="1000" />
+    <Property Name="IsBlocked" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionBlitzCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="TimeType" Type="int" Nullable="false" />
+    <Property Name="TimeValue" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionBlitzFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InstructionBlitzGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FileGuid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InstructionGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FileGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InstructionVersion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionProfession">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InstructionGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProfessionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructionSettings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PeriodTimeValue" Type="int" Nullable="false" />
+    <Property Name="PeriodTimeType" Type="int" Nullable="false" />
+    <Property Name="NewVersionTimeValue" Type="int" Nullable="false" />
+    <Property Name="NewVersionTimeType" Type="int" Nullable="false" />
+    <Property Name="InactiveTimeValue" Type="int" Nullable="false" />
+    <Property Name="InactiveTimeType" Type="int" Nullable="false" />
+    <Property Name="DayColors" Type="nvarchar(max)" />
+    <Property Name="BlitzDayColors" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Question1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SearchName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="SearchCode" Type="nvarchar" MaxLength="1000" />
+    <Property Name="SearchText" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="QuestionAnswerCorrectPercent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Value" Type="int" Nullable="false" />
+    <Property Name="ValueDelimeter" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuestionCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Survey">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateFrom" Type="datetime" Nullable="false" />
+    <Property Name="DateTo" Type="datetime" />
+    <Property Name="PatientGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="DeviceGuid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SurveyAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SurveyId" Type="int" Nullable="false" />
+    <Property Name="QuestionGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="QuestionVersionNumber" Type="int" Nullable="false" />
+    <Property Name="SelectedAnswerNumber" Type="int" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SurveyAttachedFile">
+    <Key>
+      <PropertyRef Name="SurveyId" />
+      <PropertyRef Name="FileGuid" />
+    </Key>
+    <Property Name="SurveyId" Type="int" Nullable="false" />
+    <Property Name="FileGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="SurveyReport">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PeriodType" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="DateFrom" Type="datetime" Nullable="false" />
+    <Property Name="DateTo" Type="datetime" Nullable="false" />
+    <Property Name="CorrectPercent" Type="int" />
+    <Property Name="MailTo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="SettingsId" Type="int" />
+  </EntityType>
+  <EntityType Name="SurveyReportSettings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsEnable" Type="bit" Nullable="false" />
+    <Property Name="PeriodType" Type="int" Nullable="false" />
+    <Property Name="CorrectPercent" Type="int" />
+  </EntityType>
+  <EntityType Name="SurveyReportSettingsEmployee">
+    <Key>
+      <PropertyRef Name="SettingsId" />
+      <PropertyRef Name="EmployeeGuid" />
+    </Key>
+    <Property Name="SettingsId" Type="int" Nullable="false" />
+    <Property Name="EmployeeGuid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SurveyTemplate1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SearchName" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="SurveyTemplateDevice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TemplateGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DeviceGuid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SurveyTemplatePatient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TemplateGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PatientGuid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SurveyTemplateProfession">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TemplateGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProfessionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SurveyType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="DocumentGuid" Type="uniqueidentifier" />
+    <Property Name="RepeatDocumentGuid" Type="uniqueidentifier" />
+    <Property Name="SearchName" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.Patient.PatientFullInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="PatientFullInfo">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="MiddleName" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="IsArchive" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" />
+    <Property Name="Version" Type="int" />
+    <Property Name="LastName" Type="varchar" MaxLength="1000" />
+    <Property Name="FirstName" Type="varchar" MaxLength="1000" />
+    <Property Name="MiddleName" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="3002" />
+    <Property Name="ShortName" Type="varchar" MaxLength="1008" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="Years" Type="int" />
+    <Property Name="SEX" Type="varchar(max)" />
+    <Property Name="SeriyaPolisa" Type="varchar(max)" />
+    <Property Name="NomerPolis" Type="varchar(max)" />
+    <Property Name="InsuranceCompany" Type="varchar(max)" />
+    <Property Name="InsuranceDateFrom" Type="date" />
+    <Property Name="InsuranceDateTo" Type="date" />
+    <Property Name="AttachmentOrganisation" Type="varchar(max)" />
+    <Property Name="SECTOR" Type="varchar(max)" />
+    <Property Name="Code" Type="varchar(max)" />
+    <Property Name="Comment" Type="varchar(max)" />
+    <Property Name="MedCardNum" Type="varchar(max)" />
+    <Property Name="NumberAmb" Type="varchar(max)" />
+    <Property Name="SNILS" Type="varchar(max)" />
+    <Property Name="LgotDrug" Type="bit" />
+    <Property Name="JobTabNumber" Type="varchar(max)" />
+    <Property Name="HomePhoneNumber" Type="varchar(max)" />
+    <Property Name="MobilePhoneNumber" Type="varchar(max)" />
+    <Property Name="ChatId" Type="int" />
+    <Property Name="PlaceOfJob" Type="varchar(max)" />
+    <Property Name="OrganisationGuid" Type="uniqueidentifier" />
+    <Property Name="Post" Type="varchar(max)" />
+    <Property Name="Profession" Type="varchar(max)" />
+    <Property Name="WorkPhoneNumber" Type="varchar(max)" />
+    <Property Name="JobComment" Type="varchar(max)" />
+    <Property Name="JobFactory" Type="varchar(max)" />
+    <Property Name="JobSection" Type="varchar(max)" />
+    <Property Name="JobDepartment" Type="varchar(max)" />
+    <Property Name="JobCharacter" Type="varchar(max)" />
+    <Property Name="JobCondition" Type="varchar(max)" />
+    <Property Name="JobBeginDate" Type="date" />
+    <Property Name="JobEndDate" Type="date" />
+    <Property Name="PostId" Type="varchar(max)" />
+    <Property Name="ProfessionId" Type="varchar(max)" />
+    <Property Name="PatientLgot" Type="varchar(max)" />
+    <Property Name="InvalGroup" Type="varchar(max)" />
+    <Property Name="InvalOtkazOtDlo" Type="varchar(max)" />
+    <Property Name="InvalOsvidetPodlezhit" Type="varchar(max)" />
+    <Property Name="InvalDopZakl" Type="varchar(max)" />
+    <Property Name="InvalReason" Type="varchar(max)" />
+    <Property Name="InvalPredGroup" Type="varchar(max)" />
+    <Property Name="InvalOgranichStepen" Type="varchar(max)" />
+    <Property Name="InvalLgotCode" Type="varchar(max)" />
+    <Property Name="InvalDataOcherednogoOsvidetel" Type="datetime" />
+    <Property Name="InvalPrichinaSnyatiya" Type="varchar(max)" />
+    <Property Name="InvalDataSnyatiya" Type="datetime" />
+    <Property Name="InvalSeriya" Type="varchar(max)" />
+    <Property Name="InvalFioVracha" Type="varchar(max)" />
+    <Property Name="InvalPervich" Type="varchar(max)" />
+    <Property Name="InvalVidan" Type="varchar(max)" />
+    <Property Name="InvalDataVidachi" Type="datetime" />
+    <Property Name="InvalItog" Type="varchar(max)" />
+    <Property Name="InvalNomer" Type="varchar(max)" />
+    <Property Name="InvalDataUstanovleniya" Type="datetime" />
+    <Property Name="InvalMkbCode" Type="varchar(max)" />
+    <Property Name="InvalComment" Type="varchar(max)" />
+    <Property Name="InvalSrok" Type="datetime" />
+    <Property Name="Login" Type="varchar" MaxLength="100" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="PaspKemVidan" Type="varchar(max)" />
+    <Property Name="PaspSeries" Type="varchar(max)" />
+    <Property Name="PaspNumber" Type="varchar(max)" />
+    <Property Name="PaspDataVidachi" Type="datetime" />
+    <Property Name="IdentityDocument" Type="varchar(max)" />
+    <Property Name="PasportFromDate" Type="date" />
+    <Property Name="PasportToDate" Type="date" />
+    <Property Name="DepartmentCode" Type="varchar(max)" />
+    <Property Name="EMAIL" Type="varchar(max)" />
+    <Property Name="InfoSource" Type="varchar(max)" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsArchive" Type="bit" Nullable="false" />
+    <Property Name="PaymentMethodId" Type="int" />
+    <Property Name="PaymentMethod" Type="varchar(max)" />
+    <Property Name="PersonelNumber" Type="varchar(max)" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="SearchFirstName" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchLastName" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchMiddleName" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchPhone" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchAddress" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchComment" Type="varchar" MaxLength="1000" />
+    <Property Name="SearchFullName" Type="varchar" MaxLength="1000" />
+    <Property Name="Citizenship" Type="varchar(max)" />
+    <Property Name="NotificationSmsEnable" Type="bit" />
+    <Property Name="NotificationMailEnable" Type="bit" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.InstructionBlitzInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="InstructionBlitzInfo">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="RecordVersion" />
+      <PropertyRef Name="IsBlocked" />
+      <PropertyRef Name="IsArchive" />
+    </Key>
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordVersion" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" />
+    <Property Name="Number" Type="varchar(max)" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Comment" Type="varchar(max)" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="CategoryName" Type="varchar(max)" />
+    <Property Name="ButtonName" Type="varchar(max)" />
+    <Property Name="SearchNumber" Type="nvarchar" MaxLength="1000" />
+    <Property Name="SearchName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="FileCount" Type="int" />
+    <Property Name="IsBlocked" Type="bit" Nullable="false" />
+    <Property Name="IsArchive" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.InstructionInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="InstructionInfo">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="CurrentVersion" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="RecordVersion" />
+      <PropertyRef Name="IsArchive" />
+    </Key>
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="CurrentVersion" Type="int" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordVersion" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" />
+    <Property Name="Code" Type="varchar(max)" />
+    <Property Name="Version" Type="int" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Comment" Type="varchar(max)" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="CategoryName" Type="varchar(max)" />
+    <Property Name="SearchCode" Type="nvarchar" MaxLength="1000" />
+    <Property Name="SearchName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="FileCount" Type="int" />
+    <Property Name="IsArchive" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.InstructionProfessionInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="InstructionProfessionInfo">
+    <Key>
+      <PropertyRef Name="InstructionGuid" />
+      <PropertyRef Name="ProfessionId" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="InstructionGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProfessionId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="InstructionName" Type="varchar(max)" />
+    <Property Name="ProfessionName" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.QuestionAnswerInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="QuestionAnswerInfo">
+    <Key>
+      <PropertyRef Name="QuestionGuid" />
+      <PropertyRef Name="SystemNumber" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="RecordVersion" />
+    </Key>
+    <Property Name="QuestionGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SystemNumber" Type="int" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordVersion" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" />
+    <Property Name="Code" Type="varchar" MaxLength="1000" />
+    <Property Name="Comment" Type="varchar(max)" />
+    <Property Name="Correct" Type="varchar" MaxLength="1000" />
+    <Property Name="CorrectId" Type="int" />
+    <Property Name="LegalAct" Type="varchar(max)" />
+    <Property Name="DocumentParagraph" Type="varchar(max)" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.QuestionInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="QuestionInfo">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="RecordVersion" />
+    </Key>
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordVersion" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" />
+    <Property Name="Code" Type="varchar" MaxLength="1000" />
+    <Property Name="Text" Type="varchar" MaxLength="1000" />
+    <Property Name="Comment" Type="varchar(max)" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="CategoryName" Type="varchar(max)" />
+    <Property Name="Image" Type="varchar(max)" />
+    <Property Name="SearchCode" Type="nvarchar" MaxLength="1000" />
+    <Property Name="SearchName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="SearchText" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.SurveyAnswerInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="SurveyAnswerInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="PatientGuid" />
+      <PropertyRef Name="SurveyId" />
+      <PropertyRef Name="QuestionGuid" />
+      <PropertyRef Name="QuestionVersionNumber" />
+      <PropertyRef Name="SelectedAnswerTypeId" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="PatientGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="QuestionCategoryId" Type="int" />
+    <Property Name="SurveyId" Type="int" Nullable="false" />
+    <Property Name="QuestionGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="QuestionVersionNumber" Type="int" Nullable="false" />
+    <Property Name="QuestionName" Type="varchar(max)" />
+    <Property Name="SelectedAnswerNumber" Type="int" />
+    <Property Name="SelectedAnswerName" Type="varchar(max)" />
+    <Property Name="SelectedAnswerTypeId" Type="int" Nullable="false" />
+    <Property Name="CorrectAnswerNumber" Type="int" />
+    <Property Name="CorrectAnswerName" Type="varchar(max)" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.SurveyTemplateDeviceInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="SurveyTemplateDeviceInfo">
+    <Key>
+      <PropertyRef Name="TemplateGuid" />
+      <PropertyRef Name="DeviceGuid" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="TemplateGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DeviceGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="TemplateName" Type="varchar" MaxLength="200" />
+    <Property Name="DeviceName" Type="varchar(max)" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.SurveyTemplateFullInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="SurveyTemplateFullInfo">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="VersionNumber" />
+    </Key>
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="VersionNumber" Type="int" Nullable="false" />
+    <Property Name="SurveyTypeDocumentGuid" Type="uniqueidentifier" />
+    <Property Name="SurveyTypeRepeatDocumentGuid" Type="uniqueidentifier" />
+    <Property Name="ButtonName" Type="varchar" MaxLength="200" />
+    <Property Name="Type" Type="varchar" MaxLength="200" />
+    <Property Name="Comment" Type="varchar(max)" />
+    <Property Name="Name" Type="varchar" MaxLength="200" />
+    <Property Name="QuestionEnable" Type="bit" />
+    <Property Name="QuestionMeasurementOrder" Type="int" />
+    <Property Name="QuestionIsLearningMode" Type="bit" />
+    <Property Name="QuestionIsLearningModeRepeat" Type="bit" />
+    <Property Name="QuestionIsLearningModeRepeatIsCorrect" Type="bit" />
+    <Property Name="QuestionTime" Type="int" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.SurveyTemplateInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="SurveyTemplateInfo">
+    <Key>
+      <PropertyRef Name="Guid" />
+      <PropertyRef Name="RecordGuid" />
+      <PropertyRef Name="VersionNumber" />
+    </Key>
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="VersionNumber" Type="int" Nullable="false" />
+    <Property Name="SurveyTypeDocumentGuid" Type="uniqueidentifier" />
+    <Property Name="SurveyTypeRepeatDocumentGuid" Type="uniqueidentifier" />
+    <Property Name="ButtonName" Type="varchar" MaxLength="200" />
+    <Property Name="Type" Type="varchar" MaxLength="200" />
+    <Property Name="Comment" Type="varchar(max)" />
+    <Property Name="Name" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.SurveyTemplatePatientInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="SurveyTemplatePatientInfo">
+    <Key>
+      <PropertyRef Name="TemplateGuid" />
+      <PropertyRef Name="PatientGuid" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="TemplateGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PatientGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="TemplateName" Type="varchar" MaxLength="200" />
+    <Property Name="PatientName" Type="varchar" MaxLength="3002" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.SurveyTemplateProfessionInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="SurveyTemplateProfessionInfo">
+    <Key>
+      <PropertyRef Name="TemplateGuid" />
+      <PropertyRef Name="ProfessionId" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="TemplateGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProfessionId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="TemplateName" Type="varchar" MaxLength="200" />
+    <Property Name="ProfessionName" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "core-wp-candidate.WorkProtection.SurveyTemplateQuestionCategory" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="SurveyTemplateQuestionCategory">
+    <Key>
+      <PropertyRef Name="TemplateGuid" />
+      <PropertyRef Name="TemplateRecordGuid" />
+      <PropertyRef Name="TemplateVersionNumber" />
+      <PropertyRef Name="QuestionCount" />
+      <PropertyRef Name="QuestionCategoryId" />
+    </Key>
+    <Property Name="TemplateGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TemplateRecordSystemNumber" Type="int" />
+    <Property Name="TemplateRecordGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TemplateVersionNumber" Type="int" Nullable="false" />
+    <Property Name="QuestionCount" Type="int" Nullable="false" />
+    <Property Name="QuestionOrder" Type="int" />
+    <Property Name="QuestionCategoryName" Type="varchar(max)" />
+    <Property Name="QuestionCategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="AttachedFile_FolderId_fk">
+    <End Role="AttachedFileFolder" Type="Self.AttachedFileFolder" Multiplicity="0..1" />
+    <End Role="AttachedFile" Type="Self.AttachedFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AttachedFileFolder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AttachedFile">
+        <PropertyRef Name="FolderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "Briefing_InstructionGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="Briefing_InstructionGuid_fk" />-->
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "Briefing_PatientGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="Briefing_PatientGuid_fk" />-->
+  <Association Name="BriefingAttachedFile_BriefingId_fk">
+    <End Role="Briefing" Type="Self.Briefing" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BriefingAttachedFile" Type="Self.BriefingAttachedFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Briefing">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BriefingAttachedFile">
+        <PropertyRef Name="BriefingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BriefingAttachedFile_FileGuid_fk">
+    <End Role="AttachedFile" Type="Self.AttachedFile" Multiplicity="1" />
+    <End Role="BriefingAttachedFile" Type="Self.BriefingAttachedFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AttachedFile">
+        <PropertyRef Name="Guid" />
+      </Principal>
+      <Dependent Role="BriefingAttachedFile">
+        <PropertyRef Name="FileGuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BriefingReportSettingsEmployee_SettingsId_fk">
+    <End Role="BriefingReportSettings" Type="Self.BriefingReportSettings" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BriefingReportSettingsEmployee" Type="Self.BriefingReportSettingsEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BriefingReportSettings">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BriefingReportSettingsEmployee">
+        <PropertyRef Name="SettingsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InstructionBlitzFile_FileGuid_fk">
+    <End Role="AttachedFile" Type="Self.AttachedFile" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InstructionBlitzFile" Type="Self.InstructionBlitzFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AttachedFile">
+        <PropertyRef Name="Guid" />
+      </Principal>
+      <Dependent Role="InstructionBlitzFile">
+        <PropertyRef Name="FileGuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "InstructionBlitzFile_InstructionBlitzGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="InstructionBlitzFile_InstructionBlitzGuid_fk" />-->
+  <Association Name="InstructionFile_FileGuid_fk">
+    <End Role="AttachedFile" Type="Self.AttachedFile" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InstructionFile" Type="Self.InstructionFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AttachedFile">
+        <PropertyRef Name="Guid" />
+      </Principal>
+      <Dependent Role="InstructionFile">
+        <PropertyRef Name="FileGuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "InstructionFile_InstructionGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="InstructionFile_InstructionGuid_fk" />-->
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "InstructionProfession_InstructionGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="InstructionProfession_InstructionGuid_fk" />-->
+  <Association Name="InstructionProfession_ProfessionId_fk">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="InstructionProfession" Type="Self.InstructionProfession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="InstructionProfession">
+        <PropertyRef Name="ProfessionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Patient_RecordGuid_fk">
+    <End Role="Record" Type="Self.Record" Multiplicity="1" />
+    <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Record">
+        <PropertyRef Name="Guid" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="RecordGuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "PatientDactilography_Patient_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="PatientDactilography_Patient_fk" />-->
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "PatientPhoto_PatientGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="PatientPhoto_PatientGuid_fk" />-->
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "PatientRelation_ChieldPatientGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="PatientRelation_ChieldPatientGuid_fk" />-->
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "PatientRelation_ParentPatientGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="PatientRelation_ParentPatientGuid_fk" />-->
+  <Association Name="PatientRelation_TypeId_fk">
+    <End Role="PatientRelationType" Type="Self.PatientRelationType" Multiplicity="1" />
+    <End Role="PatientRelation" Type="Self.PatientRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientRelationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientRelation">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PatientStatus_StatusId_fk">
+    <End Role="PatientStatusType" Type="Self.PatientStatusType" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PatientStatus" Type="Self.PatientStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientStatusType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientStatus">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ReportSettingsEmployee_SettingsId_fk">
+    <End Role="SurveyReportSettings" Type="Self.SurveyReportSettings" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SurveyReportSettingsEmployee" Type="Self.SurveyReportSettingsEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SurveyReportSettings">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SurveyReportSettingsEmployee">
+        <PropertyRef Name="SettingsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "Survey_PatientGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="Survey_PatientGuid_fk" />-->
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "SurveyAnswer_QuestionGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="SurveyAnswer_QuestionGuid_fk" />-->
+  <Association Name="SurveyAnswer_SurveyId_fk">
+    <End Role="Survey" Type="Self.Survey" Multiplicity="1" />
+    <End Role="SurveyAnswer" Type="Self.SurveyAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Survey">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SurveyAnswer">
+        <PropertyRef Name="SurveyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SurveyAttachedFile_FileGuid_fk">
+    <End Role="AttachedFile" Type="Self.AttachedFile" Multiplicity="1" />
+    <End Role="SurveyAttachedFile" Type="Self.SurveyAttachedFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AttachedFile">
+        <PropertyRef Name="Guid" />
+      </Principal>
+      <Dependent Role="SurveyAttachedFile">
+        <PropertyRef Name="FileGuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SurveyAttachedFile_SurveyId_fk">
+    <End Role="Survey" Type="Self.Survey" Multiplicity="1" />
+    <End Role="SurveyAttachedFile" Type="Self.SurveyAttachedFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Survey">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SurveyAttachedFile">
+        <PropertyRef Name="SurveyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "SurveyTemplateDevice_TemplateGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="SurveyTemplateDevice_TemplateGuid_fk" />-->
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "SurveyTemplatePatient_PatientGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="SurveyTemplatePatient_PatientGuid_fk" />-->
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "SurveyTemplatePatient_TemplateGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="SurveyTemplatePatient_TemplateGuid_fk" />-->
+  <Association Name="SurveyTemplateProfession_ProfessionId_fk">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="SurveyTemplateProfession" Type="Self.SurveyTemplateProfession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SurveyTemplateProfession">
+        <PropertyRef Name="ProfessionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "SurveyTemplateProfession_TemplateGuid_fk" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="SurveyTemplateProfession_TemplateGuid_fk" />-->
+  <Association Name="UserProfilePhoto_UserId_fk">
+    <End Role="User" Type="Self.User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserProfilePhoto" Type="Self.UserProfilePhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfilePhoto">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище WorkProtectionModelContainer">
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="Patient" store:Type="Tables" />
+    <EntitySet Name="PatientDactilography" EntityType="Self.PatientDactilography" Schema="Patient" store:Type="Tables" />
+    <EntitySet Name="PatientPhoto" EntityType="Self.PatientPhoto" Schema="Patient" store:Type="Tables" />
+    <EntitySet Name="PatientRelation" EntityType="Self.PatientRelation" Schema="Patient" store:Type="Tables" />
+    <EntitySet Name="PatientRelationType" EntityType="Self.PatientRelationType" Schema="Patient" store:Type="Tables" />
+    <EntitySet Name="PatientStatus" EntityType="Self.PatientStatus" Schema="Patient" store:Type="Tables" />
+    <EntitySet Name="PatientStatusType" EntityType="Self.PatientStatusType" Schema="Patient" store:Type="Tables" />
+    <EntitySet Name="AttachedFile" EntityType="Self.AttachedFile" Schema="Record" store:Type="Tables" />
+    <EntitySet Name="AttachedFileFolder" EntityType="Self.AttachedFileFolder" Schema="Record" store:Type="Tables" />
+    <EntitySet Name="Record" EntityType="Self.Record" Schema="Record" store:Type="Tables" />
+    <EntitySet Name="Post" EntityType="Self.Post" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="Instruction" EntityType="Self.Instruction" Schema="Result" store:Type="Tables" />
+    <EntitySet Name="Question" EntityType="Self.Question" Schema="Result" store:Type="Tables" />
+    <EntitySet Name="QuestionAnswer" EntityType="Self.QuestionAnswer" Schema="Result" store:Type="Tables" />
+    <EntitySet Name="SettingsAnketa" EntityType="Self.SettingsAnketa" Schema="Result" store:Type="Tables" />
+    <EntitySet Name="SettingsAnketaQuestionCategory" EntityType="Self.SettingsAnketaQuestionCategory" Schema="Result" store:Type="Tables" />
+    <EntitySet Name="SurveyTemplate" EntityType="Self.SurveyTemplate" Schema="Result" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="UserSystem" store:Type="Tables" />
+    <EntitySet Name="UserProfilePhoto" EntityType="Self.UserProfilePhoto" Schema="UserSystem" store:Type="Tables" />
+    <EntitySet Name="Briefing" EntityType="Self.Briefing" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="BriefingAttachedFile" EntityType="Self.BriefingAttachedFile" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="BriefingReport" EntityType="Self.BriefingReport" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="BriefingReportSettings" EntityType="Self.BriefingReportSettings" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="Instruction1" EntityType="Self.Instruction1" Schema="WorkProtection" Table="Instruction" store:Type="Tables" />
+    <EntitySet Name="InstructionBlitz" EntityType="Self.InstructionBlitz" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="InstructionBlitzCategory" EntityType="Self.InstructionBlitzCategory" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="InstructionBlitzFile" EntityType="Self.InstructionBlitzFile" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="InstructionCategory" EntityType="Self.InstructionCategory" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="InstructionFile" EntityType="Self.InstructionFile" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="InstructionProfession" EntityType="Self.InstructionProfession" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="InstructionSettings" EntityType="Self.InstructionSettings" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="Question1" EntityType="Self.Question1" Schema="WorkProtection" Table="Question" store:Type="Tables" />
+    <EntitySet Name="QuestionAnswerCorrectPercent" EntityType="Self.QuestionAnswerCorrectPercent" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="QuestionCategory" EntityType="Self.QuestionCategory" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="Survey" EntityType="Self.Survey" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="SurveyAnswer" EntityType="Self.SurveyAnswer" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="SurveyAttachedFile" EntityType="Self.SurveyAttachedFile" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="SurveyReport" EntityType="Self.SurveyReport" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="SurveyReportSettings" EntityType="Self.SurveyReportSettings" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="SurveyReportSettingsEmployee" EntityType="Self.SurveyReportSettingsEmployee" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="SurveyTemplate1" EntityType="Self.SurveyTemplate1" Schema="WorkProtection" Table="SurveyTemplate" store:Type="Tables" />
+    <EntitySet Name="SurveyTemplateDevice" EntityType="Self.SurveyTemplateDevice" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="SurveyTemplatePatient" EntityType="Self.SurveyTemplatePatient" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="SurveyTemplateProfession" EntityType="Self.SurveyTemplateProfession" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="SurveyType" EntityType="Self.SurveyType" Schema="WorkProtection" store:Type="Tables" />
+    <EntitySet Name="PatientTable" EntityType="Self.PatientTable" store:Type="Tables" store:Schema="Patient">
+      <DefiningQuery>SELECT 
+    [PatientTable].[Guid] AS [Guid], 
+    [PatientTable].[RecordGuid] AS [RecordGuid], 
+    [PatientTable].[Version] AS [Version], 
+    [PatientTable].[LastName] AS [LastName], 
+    [PatientTable].[FirstName] AS [FirstName], 
+    [PatientTable].[MiddleName] AS [MiddleName], 
+    [PatientTable].[FullName] AS [FullName], 
+    [PatientTable].[ShortName] AS [ShortName], 
+    [PatientTable].[BirthDate] AS [BirthDate], 
+    [PatientTable].[Years] AS [Years], 
+    [PatientTable].[SEX] AS [SEX], 
+    [PatientTable].[SeriyaPolisa] AS [SeriyaPolisa], 
+    [PatientTable].[NomerPolis] AS [NomerPolis], 
+    [PatientTable].[InsuranceCompany] AS [InsuranceCompany], 
+    [PatientTable].[InsuranceDateFrom] AS [InsuranceDateFrom], 
+    [PatientTable].[InsuranceDateTo] AS [InsuranceDateTo], 
+    [PatientTable].[AttachmentOrganisation] AS [AttachmentOrganisation], 
+    [PatientTable].[SECTOR] AS [SECTOR], 
+    [PatientTable].[Code] AS [Code], 
+    [PatientTable].[Comment] AS [Comment], 
+    [PatientTable].[MedCardNum] AS [MedCardNum], 
+    [PatientTable].[NumberAmb] AS [NumberAmb], 
+    [PatientTable].[SNILS] AS [SNILS], 
+    [PatientTable].[LgotDrug] AS [LgotDrug], 
+    [PatientTable].[JobTabNumber] AS [JobTabNumber], 
+    [PatientTable].[HomePhoneNumber] AS [HomePhoneNumber], 
+    [PatientTable].[MobilePhoneNumber] AS [MobilePhoneNumber], 
+    [PatientTable].[ChatId] AS [ChatId], 
+    [PatientTable].[PlaceOfJob] AS [PlaceOfJob], 
+    [PatientTable].[OrganisationGuid] AS [OrganisationGuid], 
+    [PatientTable].[Post] AS [Post], 
+    [PatientTable].[Profession] AS [Profession], 
+    [PatientTable].[WorkPhoneNumber] AS [WorkPhoneNumber], 
+    [PatientTable].[JobComment] AS [JobComment], 
+    [PatientTable].[JobFactory] AS [JobFactory], 
+    [PatientTable].[JobSection] AS [JobSection], 
+    [PatientTable].[JobDepartment] AS [JobDepartment], 
+    [PatientTable].[JobCharacter] AS [JobCharacter], 
+    [PatientTable].[JobCondition] AS [JobCondition], 
+    [PatientTable].[JobBeginDate] AS [JobBeginDate], 
+    [PatientTable].[JobEndDate] AS [JobEndDate], 
+    [PatientTable].[PostId] AS [PostId], 
+    [PatientTable].[ProfessionId] AS [ProfessionId], 
+    [PatientTable].[PatientLgot] AS [PatientLgot], 
+    [PatientTable].[InvalGroup] AS [InvalGroup], 
+    [PatientTable].[InvalOtkazOtDlo] AS [InvalOtkazOtDlo], 
+    [PatientTable].[InvalOsvidetPodlezhit] AS [InvalOsvidetPodlezhit], 
+    [PatientTable].[InvalDopZakl] AS [InvalDopZakl], 
+    [PatientTable].[InvalReason] AS [InvalReason], 
+    [PatientTable].[InvalPredGroup] AS [InvalPredGroup], 
+    [PatientTable].[InvalOgranichStepen] AS [InvalOgranichStepen], 
+    [PatientTable].[InvalLgotCode] AS [InvalLgotCode], 
+    [PatientTable].[InvalDataOcherednogoOsvidetel] AS [InvalDataOcherednogoOsvidetel], 
+    [PatientTable].[InvalPrichinaSnyatiya] AS [InvalPrichinaSnyatiya], 
+    [PatientTable].[InvalDataSnyatiya] AS [InvalDataSnyatiya], 
+    [PatientTable].[InvalSeriya] AS [InvalSeriya], 
+    [PatientTable].[InvalFioVracha] AS [InvalFioVracha], 
+    [PatientTable].[InvalPervich] AS [InvalPervich], 
+    [PatientTable].[InvalVidan] AS [InvalVidan], 
+    [PatientTable].[InvalDataVidachi] AS [InvalDataVidachi], 
+    [PatientTable].[InvalItog] AS [InvalItog], 
+    [PatientTable].[InvalNomer] AS [InvalNomer], 
+    [PatientTable].[InvalDataUstanovleniya] AS [InvalDataUstanovleniya], 
+    [PatientTable].[InvalMkbCode] AS [InvalMkbCode], 
+    [PatientTable].[InvalComment] AS [InvalComment], 
+    [PatientTable].[InvalSrok] AS [InvalSrok], 
+    [PatientTable].[Login] AS [Login], 
+    [PatientTable].[UserId] AS [UserId], 
+    [PatientTable].[PaspKemVidan] AS [PaspKemVidan], 
+    [PatientTable].[PaspSeries] AS [PaspSeries], 
+    [PatientTable].[PaspNumber] AS [PaspNumber], 
+    [PatientTable].[PaspDataVidachi] AS [PaspDataVidachi], 
+    [PatientTable].[IdentityDocument] AS [IdentityDocument], 
+    [PatientTable].[PasportFromDate] AS [PasportFromDate], 
+    [PatientTable].[PasportToDate] AS [PasportToDate], 
+    [PatientTable].[DepartmentCode] AS [DepartmentCode], 
+    [PatientTable].[EMAIL] AS [EMAIL], 
+    [PatientTable].[InfoSource] AS [InfoSource], 
+    [PatientTable].[Date] AS [Date], 
+    [PatientTable].[IsArchive] AS [IsArchive], 
+    [PatientTable].[PaymentMethodId] AS [PaymentMethodId], 
+    [PatientTable].[PaymentMethod] AS [PaymentMethod], 
+    [PatientTable].[PersonelNumber] AS [PersonelNumber], 
+    [PatientTable].[Id] AS [Id], 
+    [PatientTable].[SearchFirstName] AS [SearchFirstName], 
+    [PatientTable].[SearchLastName] AS [SearchLastName], 
+    [PatientTable].[SearchMiddleName] AS [SearchMiddleName], 
+    [PatientTable].[SearchPhone] AS [SearchPhone], 
+    [PatientTable].[SearchAddress] AS [SearchAddress], 
+    [PatientTable].[SearchComment] AS [SearchComment], 
+    [PatientTable].[SearchFullName] AS [SearchFullName], 
+    [PatientTable].[Citizenship] AS [Citizenship], 
+    [PatientTable].[NotificationSmsEnable] AS [NotificationSmsEnable], 
+    [PatientTable].[NotificationMailEnable] AS [NotificationMailEnable]
+    FROM [Patient].[PatientTable] AS [PatientTable]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BriefingReportSettingsEmployee" EntityType="Self.BriefingReportSettingsEmployee" store:Type="Tables" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [BriefingReportSettingsEmployee].[SettingsId] AS [SettingsId], 
+    [BriefingReportSettingsEmployee].[EmployeeGuid] AS [EmployeeGuid]
+    FROM [WorkProtection].[BriefingReportSettingsEmployee] AS [BriefingReportSettingsEmployee]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PatientFullInfo" EntityType="Self.PatientFullInfo" store:Type="Views" store:Schema="Patient">
+      <DefiningQuery>SELECT 
+    [PatientFullInfo].[Guid] AS [Guid], 
+    [PatientFullInfo].[RecordGuid] AS [RecordGuid], 
+    [PatientFullInfo].[Version] AS [Version], 
+    [PatientFullInfo].[LastName] AS [LastName], 
+    [PatientFullInfo].[FirstName] AS [FirstName], 
+    [PatientFullInfo].[MiddleName] AS [MiddleName], 
+    [PatientFullInfo].[FullName] AS [FullName], 
+    [PatientFullInfo].[ShortName] AS [ShortName], 
+    [PatientFullInfo].[BirthDate] AS [BirthDate], 
+    [PatientFullInfo].[Years] AS [Years], 
+    [PatientFullInfo].[SEX] AS [SEX], 
+    [PatientFullInfo].[SeriyaPolisa] AS [SeriyaPolisa], 
+    [PatientFullInfo].[NomerPolis] AS [NomerPolis], 
+    [PatientFullInfo].[InsuranceCompany] AS [InsuranceCompany], 
+    [PatientFullInfo].[InsuranceDateFrom] AS [InsuranceDateFrom], 
+    [PatientFullInfo].[InsuranceDateTo] AS [InsuranceDateTo], 
+    [PatientFullInfo].[AttachmentOrganisation] AS [AttachmentOrganisation], 
+    [PatientFullInfo].[SECTOR] AS [SECTOR], 
+    [PatientFullInfo].[Code] AS [Code], 
+    [PatientFullInfo].[Comment] AS [Comment], 
+    [PatientFullInfo].[MedCardNum] AS [MedCardNum], 
+    [PatientFullInfo].[NumberAmb] AS [NumberAmb], 
+    [PatientFullInfo].[SNILS] AS [SNILS], 
+    [PatientFullInfo].[LgotDrug] AS [LgotDrug], 
+    [PatientFullInfo].[JobTabNumber] AS [JobTabNumber], 
+    [PatientFullInfo].[HomePhoneNumber] AS [HomePhoneNumber], 
+    [PatientFullInfo].[MobilePhoneNumber] AS [MobilePhoneNumber], 
+    [PatientFullInfo].[ChatId] AS [ChatId], 
+    [PatientFullInfo].[PlaceOfJob] AS [PlaceOfJob], 
+    [PatientFullInfo].[OrganisationGuid] AS [OrganisationGuid], 
+    [PatientFullInfo].[Post] AS [Post], 
+    [PatientFullInfo].[Profession] AS [Profession], 
+    [PatientFullInfo].[WorkPhoneNumber] AS [WorkPhoneNumber], 
+    [PatientFullInfo].[JobComment] AS [JobComment], 
+    [PatientFullInfo].[JobFactory] AS [JobFactory], 
+    [PatientFullInfo].[JobSection] AS [JobSection], 
+    [PatientFullInfo].[JobDepartment] AS [JobDepartment], 
+    [PatientFullInfo].[JobCharacter] AS [JobCharacter], 
+    [PatientFullInfo].[JobCondition] AS [JobCondition], 
+    [PatientFullInfo].[JobBeginDate] AS [JobBeginDate], 
+    [PatientFullInfo].[JobEndDate] AS [JobEndDate], 
+    [PatientFullInfo].[PostId] AS [PostId], 
+    [PatientFullInfo].[ProfessionId] AS [ProfessionId], 
+    [PatientFullInfo].[PatientLgot] AS [PatientLgot], 
+    [PatientFullInfo].[InvalGroup] AS [InvalGroup], 
+    [PatientFullInfo].[InvalOtkazOtDlo] AS [InvalOtkazOtDlo], 
+    [PatientFullInfo].[InvalOsvidetPodlezhit] AS [InvalOsvidetPodlezhit], 
+    [PatientFullInfo].[InvalDopZakl] AS [InvalDopZakl], 
+    [PatientFullInfo].[InvalReason] AS [InvalReason], 
+    [PatientFullInfo].[InvalPredGroup] AS [InvalPredGroup], 
+    [PatientFullInfo].[InvalOgranichStepen] AS [InvalOgranichStepen], 
+    [PatientFullInfo].[InvalLgotCode] AS [InvalLgotCode], 
+    [PatientFullInfo].[InvalDataOcherednogoOsvidetel] AS [InvalDataOcherednogoOsvidetel], 
+    [PatientFullInfo].[InvalPrichinaSnyatiya] AS [InvalPrichinaSnyatiya], 
+    [PatientFullInfo].[InvalDataSnyatiya] AS [InvalDataSnyatiya], 
+    [PatientFullInfo].[InvalSeriya] AS [InvalSeriya], 
+    [PatientFullInfo].[InvalFioVracha] AS [InvalFioVracha], 
+    [PatientFullInfo].[InvalPervich] AS [InvalPervich], 
+    [PatientFullInfo].[InvalVidan] AS [InvalVidan], 
+    [PatientFullInfo].[InvalDataVidachi] AS [InvalDataVidachi], 
+    [PatientFullInfo].[InvalItog] AS [InvalItog], 
+    [PatientFullInfo].[InvalNomer] AS [InvalNomer], 
+    [PatientFullInfo].[InvalDataUstanovleniya] AS [InvalDataUstanovleniya], 
+    [PatientFullInfo].[InvalMkbCode] AS [InvalMkbCode], 
+    [PatientFullInfo].[InvalComment] AS [InvalComment], 
+    [PatientFullInfo].[InvalSrok] AS [InvalSrok], 
+    [PatientFullInfo].[Login] AS [Login], 
+    [PatientFullInfo].[UserId] AS [UserId], 
+    [PatientFullInfo].[PaspKemVidan] AS [PaspKemVidan], 
+    [PatientFullInfo].[PaspSeries] AS [PaspSeries], 
+    [PatientFullInfo].[PaspNumber] AS [PaspNumber], 
+    [PatientFullInfo].[PaspDataVidachi] AS [PaspDataVidachi], 
+    [PatientFullInfo].[IdentityDocument] AS [IdentityDocument], 
+    [PatientFullInfo].[PasportFromDate] AS [PasportFromDate], 
+    [PatientFullInfo].[PasportToDate] AS [PasportToDate], 
+    [PatientFullInfo].[DepartmentCode] AS [DepartmentCode], 
+    [PatientFullInfo].[EMAIL] AS [EMAIL], 
+    [PatientFullInfo].[InfoSource] AS [InfoSource], 
+    [PatientFullInfo].[Date] AS [Date], 
+    [PatientFullInfo].[IsArchive] AS [IsArchive], 
+    [PatientFullInfo].[PaymentMethodId] AS [PaymentMethodId], 
+    [PatientFullInfo].[PaymentMethod] AS [PaymentMethod], 
+    [PatientFullInfo].[PersonelNumber] AS [PersonelNumber], 
+    [PatientFullInfo].[Id] AS [Id], 
+    [PatientFullInfo].[SearchFirstName] AS [SearchFirstName], 
+    [PatientFullInfo].[SearchLastName] AS [SearchLastName], 
+    [PatientFullInfo].[SearchMiddleName] AS [SearchMiddleName], 
+    [PatientFullInfo].[SearchPhone] AS [SearchPhone], 
+    [PatientFullInfo].[SearchAddress] AS [SearchAddress], 
+    [PatientFullInfo].[SearchComment] AS [SearchComment], 
+    [PatientFullInfo].[SearchFullName] AS [SearchFullName], 
+    [PatientFullInfo].[Citizenship] AS [Citizenship], 
+    [PatientFullInfo].[NotificationSmsEnable] AS [NotificationSmsEnable], 
+    [PatientFullInfo].[NotificationMailEnable] AS [NotificationMailEnable]
+    FROM [Patient].[PatientFullInfo] AS [PatientFullInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="InstructionBlitzInfo" EntityType="Self.InstructionBlitzInfo" store:Type="Views" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [InstructionBlitzInfo].[Guid] AS [Guid], 
+    [InstructionBlitzInfo].[Id] AS [Id], 
+    [InstructionBlitzInfo].[RecordGuid] AS [RecordGuid], 
+    [InstructionBlitzInfo].[RecordVersion] AS [RecordVersion], 
+    [InstructionBlitzInfo].[Name] AS [Name], 
+    [InstructionBlitzInfo].[Number] AS [Number], 
+    [InstructionBlitzInfo].[Date] AS [Date], 
+    [InstructionBlitzInfo].[Comment] AS [Comment], 
+    [InstructionBlitzInfo].[CategoryId] AS [CategoryId], 
+    [InstructionBlitzInfo].[CategoryName] AS [CategoryName], 
+    [InstructionBlitzInfo].[ButtonName] AS [ButtonName], 
+    [InstructionBlitzInfo].[SearchNumber] AS [SearchNumber], 
+    [InstructionBlitzInfo].[SearchName] AS [SearchName], 
+    [InstructionBlitzInfo].[FileCount] AS [FileCount], 
+    [InstructionBlitzInfo].[IsBlocked] AS [IsBlocked], 
+    [InstructionBlitzInfo].[IsArchive] AS [IsArchive]
+    FROM [WorkProtection].[InstructionBlitzInfo] AS [InstructionBlitzInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="InstructionInfo" EntityType="Self.InstructionInfo" store:Type="Views" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [InstructionInfo].[Guid] AS [Guid], 
+    [InstructionInfo].[Id] AS [Id], 
+    [InstructionInfo].[CurrentVersion] AS [CurrentVersion], 
+    [InstructionInfo].[RecordGuid] AS [RecordGuid], 
+    [InstructionInfo].[RecordVersion] AS [RecordVersion], 
+    [InstructionInfo].[Name] AS [Name], 
+    [InstructionInfo].[Code] AS [Code], 
+    [InstructionInfo].[Version] AS [Version], 
+    [InstructionInfo].[Date] AS [Date], 
+    [InstructionInfo].[Comment] AS [Comment], 
+    [InstructionInfo].[CategoryId] AS [CategoryId], 
+    [InstructionInfo].[CategoryName] AS [CategoryName], 
+    [InstructionInfo].[SearchCode] AS [SearchCode], 
+    [InstructionInfo].[SearchName] AS [SearchName], 
+    [InstructionInfo].[FileCount] AS [FileCount], 
+    [InstructionInfo].[IsArchive] AS [IsArchive]
+    FROM [WorkProtection].[InstructionInfo] AS [InstructionInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="InstructionProfessionInfo" EntityType="Self.InstructionProfessionInfo" store:Type="Views" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [InstructionProfessionInfo].[InstructionGuid] AS [InstructionGuid], 
+    [InstructionProfessionInfo].[ProfessionId] AS [ProfessionId], 
+    [InstructionProfessionInfo].[Id] AS [Id], 
+    [InstructionProfessionInfo].[InstructionName] AS [InstructionName], 
+    [InstructionProfessionInfo].[ProfessionName] AS [ProfessionName]
+    FROM [WorkProtection].[InstructionProfessionInfo] AS [InstructionProfessionInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="QuestionAnswerInfo" EntityType="Self.QuestionAnswerInfo" store:Type="Views" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [QuestionAnswerInfo].[QuestionGuid] AS [QuestionGuid], 
+    [QuestionAnswerInfo].[SystemNumber] AS [SystemNumber], 
+    [QuestionAnswerInfo].[RecordGuid] AS [RecordGuid], 
+    [QuestionAnswerInfo].[RecordVersion] AS [RecordVersion], 
+    [QuestionAnswerInfo].[Name] AS [Name], 
+    [QuestionAnswerInfo].[Code] AS [Code], 
+    [QuestionAnswerInfo].[Comment] AS [Comment], 
+    [QuestionAnswerInfo].[Correct] AS [Correct], 
+    [QuestionAnswerInfo].[CorrectId] AS [CorrectId], 
+    [QuestionAnswerInfo].[LegalAct] AS [LegalAct], 
+    [QuestionAnswerInfo].[DocumentParagraph] AS [DocumentParagraph]
+    FROM [WorkProtection].[QuestionAnswerInfo] AS [QuestionAnswerInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="QuestionInfo" EntityType="Self.QuestionInfo" store:Type="Views" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [QuestionInfo].[Guid] AS [Guid], 
+    [QuestionInfo].[RecordGuid] AS [RecordGuid], 
+    [QuestionInfo].[RecordVersion] AS [RecordVersion], 
+    [QuestionInfo].[Name] AS [Name], 
+    [QuestionInfo].[Code] AS [Code], 
+    [QuestionInfo].[Text] AS [Text], 
+    [QuestionInfo].[Comment] AS [Comment], 
+    [QuestionInfo].[CategoryId] AS [CategoryId], 
+    [QuestionInfo].[CategoryName] AS [CategoryName], 
+    [QuestionInfo].[Image] AS [Image], 
+    [QuestionInfo].[SearchCode] AS [SearchCode], 
+    [QuestionInfo].[SearchName] AS [SearchName], 
+    [QuestionInfo].[SearchText] AS [SearchText]
+    FROM [WorkProtection].[QuestionInfo] AS [QuestionInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SurveyAnswerInfo" EntityType="Self.SurveyAnswerInfo" store:Type="Views" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [SurveyAnswerInfo].[Id] AS [Id], 
+    [SurveyAnswerInfo].[PatientGuid] AS [PatientGuid], 
+    [SurveyAnswerInfo].[QuestionCategoryId] AS [QuestionCategoryId], 
+    [SurveyAnswerInfo].[SurveyId] AS [SurveyId], 
+    [SurveyAnswerInfo].[QuestionGuid] AS [QuestionGuid], 
+    [SurveyAnswerInfo].[QuestionVersionNumber] AS [QuestionVersionNumber], 
+    [SurveyAnswerInfo].[QuestionName] AS [QuestionName], 
+    [SurveyAnswerInfo].[SelectedAnswerNumber] AS [SelectedAnswerNumber], 
+    [SurveyAnswerInfo].[SelectedAnswerName] AS [SelectedAnswerName], 
+    [SurveyAnswerInfo].[SelectedAnswerTypeId] AS [SelectedAnswerTypeId], 
+    [SurveyAnswerInfo].[CorrectAnswerNumber] AS [CorrectAnswerNumber], 
+    [SurveyAnswerInfo].[CorrectAnswerName] AS [CorrectAnswerName]
+    FROM [WorkProtection].[SurveyAnswerInfo] AS [SurveyAnswerInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SurveyTemplateDeviceInfo" EntityType="Self.SurveyTemplateDeviceInfo" store:Type="Views" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [SurveyTemplateDeviceInfo].[TemplateGuid] AS [TemplateGuid], 
+    [SurveyTemplateDeviceInfo].[DeviceGuid] AS [DeviceGuid], 
+    [SurveyTemplateDeviceInfo].[Id] AS [Id], 
+    [SurveyTemplateDeviceInfo].[TemplateName] AS [TemplateName], 
+    [SurveyTemplateDeviceInfo].[DeviceName] AS [DeviceName]
+    FROM [WorkProtection].[SurveyTemplateDeviceInfo] AS [SurveyTemplateDeviceInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SurveyTemplateFullInfo" EntityType="Self.SurveyTemplateFullInfo" store:Type="Views" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [SurveyTemplateFullInfo].[Guid] AS [Guid], 
+    [SurveyTemplateFullInfo].[RecordGuid] AS [RecordGuid], 
+    [SurveyTemplateFullInfo].[VersionNumber] AS [VersionNumber], 
+    [SurveyTemplateFullInfo].[SurveyTypeDocumentGuid] AS [SurveyTypeDocumentGuid], 
+    [SurveyTemplateFullInfo].[SurveyTypeRepeatDocumentGuid] AS [SurveyTypeRepeatDocumentGuid], 
+    [SurveyTemplateFullInfo].[ButtonName] AS [ButtonName], 
+    [SurveyTemplateFullInfo].[Type] AS [Type], 
+    [SurveyTemplateFullInfo].[Comment] AS [Comment], 
+    [SurveyTemplateFullInfo].[Name] AS [Name], 
+    [SurveyTemplateFullInfo].[QuestionEnable] AS [QuestionEnable], 
+    [SurveyTemplateFullInfo].[QuestionMeasurementOrder] AS [QuestionMeasurementOrder], 
+    [SurveyTemplateFullInfo].[QuestionIsLearningMode] AS [QuestionIsLearningMode], 
+    [SurveyTemplateFullInfo].[QuestionIsLearningModeRepeat] AS [QuestionIsLearningModeRepeat], 
+    [SurveyTemplateFullInfo].[QuestionIsLearningModeRepeatIsCorrect] AS [QuestionIsLearningModeRepeatIsCorrect], 
+    [SurveyTemplateFullInfo].[QuestionTime] AS [QuestionTime]
+    FROM [WorkProtection].[SurveyTemplateFullInfo] AS [SurveyTemplateFullInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SurveyTemplateInfo" EntityType="Self.SurveyTemplateInfo" store:Type="Views" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [SurveyTemplateInfo].[Guid] AS [Guid], 
+    [SurveyTemplateInfo].[RecordGuid] AS [RecordGuid], 
+    [SurveyTemplateInfo].[VersionNumber] AS [VersionNumber], 
+    [SurveyTemplateInfo].[SurveyTypeDocumentGuid] AS [SurveyTypeDocumentGuid], 
+    [SurveyTemplateInfo].[SurveyTypeRepeatDocumentGuid] AS [SurveyTypeRepeatDocumentGuid], 
+    [SurveyTemplateInfo].[ButtonName] AS [ButtonName], 
+    [SurveyTemplateInfo].[Type] AS [Type], 
+    [SurveyTemplateInfo].[Comment] AS [Comment], 
+    [SurveyTemplateInfo].[Name] AS [Name]
+    FROM [WorkProtection].[SurveyTemplateInfo] AS [SurveyTemplateInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SurveyTemplatePatientInfo" EntityType="Self.SurveyTemplatePatientInfo" store:Type="Views" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [SurveyTemplatePatientInfo].[TemplateGuid] AS [TemplateGuid], 
+    [SurveyTemplatePatientInfo].[PatientGuid] AS [PatientGuid], 
+    [SurveyTemplatePatientInfo].[Id] AS [Id], 
+    [SurveyTemplatePatientInfo].[TemplateName] AS [TemplateName], 
+    [SurveyTemplatePatientInfo].[PatientName] AS [PatientName]
+    FROM [WorkProtection].[SurveyTemplatePatientInfo] AS [SurveyTemplatePatientInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SurveyTemplateProfessionInfo" EntityType="Self.SurveyTemplateProfessionInfo" store:Type="Views" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [SurveyTemplateProfessionInfo].[TemplateGuid] AS [TemplateGuid], 
+    [SurveyTemplateProfessionInfo].[ProfessionId] AS [ProfessionId], 
+    [SurveyTemplateProfessionInfo].[Id] AS [Id], 
+    [SurveyTemplateProfessionInfo].[TemplateName] AS [TemplateName], 
+    [SurveyTemplateProfessionInfo].[ProfessionName] AS [ProfessionName]
+    FROM [WorkProtection].[SurveyTemplateProfessionInfo] AS [SurveyTemplateProfessionInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SurveyTemplateQuestionCategory" EntityType="Self.SurveyTemplateQuestionCategory" store:Type="Views" store:Schema="WorkProtection">
+      <DefiningQuery>SELECT 
+    [SurveyTemplateQuestionCategory].[TemplateGuid] AS [TemplateGuid], 
+    [SurveyTemplateQuestionCategory].[TemplateRecordSystemNumber] AS [TemplateRecordSystemNumber], 
+    [SurveyTemplateQuestionCategory].[TemplateRecordGuid] AS [TemplateRecordGuid], 
+    [SurveyTemplateQuestionCategory].[TemplateVersionNumber] AS [TemplateVersionNumber], 
+    [SurveyTemplateQuestionCategory].[QuestionCount] AS [QuestionCount], 
+    [SurveyTemplateQuestionCategory].[QuestionOrder] AS [QuestionOrder], 
+    [SurveyTemplateQuestionCategory].[QuestionCategoryName] AS [QuestionCategoryName], 
+    [SurveyTemplateQuestionCategory].[QuestionCategoryId] AS [QuestionCategoryId]
+    FROM [WorkProtection].[SurveyTemplateQuestionCategory] AS [SurveyTemplateQuestionCategory]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="AttachedFile_FolderId_fk" Association="Self.AttachedFile_FolderId_fk">
+      <End Role="AttachedFileFolder" EntitySet="AttachedFileFolder" />
+      <End Role="AttachedFile" EntitySet="AttachedFile" />
+    </AssociationSet>
+    <AssociationSet Name="BriefingAttachedFile_BriefingId_fk" Association="Self.BriefingAttachedFile_BriefingId_fk">
+      <End Role="Briefing" EntitySet="Briefing" />
+      <End Role="BriefingAttachedFile" EntitySet="BriefingAttachedFile" />
+    </AssociationSet>
+    <AssociationSet Name="BriefingAttachedFile_FileGuid_fk" Association="Self.BriefingAttachedFile_FileGuid_fk">
+      <End Role="AttachedFile" EntitySet="AttachedFile" />
+      <End Role="BriefingAttachedFile" EntitySet="BriefingAttachedFile" />
+    </AssociationSet>
+    <AssociationSet Name="BriefingReportSettingsEmployee_SettingsId_fk" Association="Self.BriefingReportSettingsEmployee_SettingsId_fk">
+      <End Role="BriefingReportSettings" EntitySet="BriefingReportSettings" />
+      <End Role="BriefingReportSettingsEmployee" EntitySet="BriefingReportSettingsEmployee" />
+    </AssociationSet>
+    <AssociationSet Name="InstructionBlitzFile_FileGuid_fk" Association="Self.InstructionBlitzFile_FileGuid_fk">
+      <End Role="AttachedFile" EntitySet="AttachedFile" />
+      <End Role="InstructionBlitzFile" EntitySet="InstructionBlitzFile" />
+    </AssociationSet>
+    <AssociationSet Name="InstructionFile_FileGuid_fk" Association="Self.InstructionFile_FileGuid_fk">
+      <End Role="AttachedFile" EntitySet="AttachedFile" />
+      <End Role="InstructionFile" EntitySet="InstructionFile" />
+    </AssociationSet>
+    <AssociationSet Name="InstructionProfession_ProfessionId_fk" Association="Self.InstructionProfession_ProfessionId_fk">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="InstructionProfession" EntitySet="InstructionProfession" />
+    </AssociationSet>
+    <AssociationSet Name="Patient_RecordGuid_fk" Association="Self.Patient_RecordGuid_fk">
+      <End Role="Record" EntitySet="Record" />
+      <End Role="Patient" EntitySet="Patient" />
+    </AssociationSet>
+    <AssociationSet Name="PatientRelation_TypeId_fk" Association="Self.PatientRelation_TypeId_fk">
+      <End Role="PatientRelationType" EntitySet="PatientRelationType" />
+      <End Role="PatientRelation" EntitySet="PatientRelation" />
+    </AssociationSet>
+    <AssociationSet Name="PatientStatus_StatusId_fk" Association="Self.PatientStatus_StatusId_fk">
+      <End Role="PatientStatusType" EntitySet="PatientStatusType" />
+      <End Role="PatientStatus" EntitySet="PatientStatus" />
+    </AssociationSet>
+    <AssociationSet Name="ReportSettingsEmployee_SettingsId_fk" Association="Self.ReportSettingsEmployee_SettingsId_fk">
+      <End Role="SurveyReportSettings" EntitySet="SurveyReportSettings" />
+      <End Role="SurveyReportSettingsEmployee" EntitySet="SurveyReportSettingsEmployee" />
+    </AssociationSet>
+    <AssociationSet Name="SurveyAnswer_SurveyId_fk" Association="Self.SurveyAnswer_SurveyId_fk">
+      <End Role="Survey" EntitySet="Survey" />
+      <End Role="SurveyAnswer" EntitySet="SurveyAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="SurveyAttachedFile_FileGuid_fk" Association="Self.SurveyAttachedFile_FileGuid_fk">
+      <End Role="AttachedFile" EntitySet="AttachedFile" />
+      <End Role="SurveyAttachedFile" EntitySet="SurveyAttachedFile" />
+    </AssociationSet>
+    <AssociationSet Name="SurveyAttachedFile_SurveyId_fk" Association="Self.SurveyAttachedFile_SurveyId_fk">
+      <End Role="Survey" EntitySet="Survey" />
+      <End Role="SurveyAttachedFile" EntitySet="SurveyAttachedFile" />
+    </AssociationSet>
+    <AssociationSet Name="SurveyTemplateProfession_ProfessionId_fk" Association="Self.SurveyTemplateProfession_ProfessionId_fk">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="SurveyTemplateProfession" EntitySet="SurveyTemplateProfession" />
+    </AssociationSet>
+    <AssociationSet Name="UserProfilePhoto_UserId_fk" Association="Self.UserProfilePhoto_UserId_fk">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserProfilePhoto" EntitySet="UserProfilePhoto" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

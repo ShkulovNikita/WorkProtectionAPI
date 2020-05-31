@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3f68ecaf8a56427387dbf5881c7a8c9d" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="WorkProtectionModel.Patient" Width="1.5" PointX="15" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.PatientDactilography" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.PatientPhoto" Width="1.5" PointX="15.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.PatientRelation" Width="1.5" PointX="13" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.PatientRelationType" Width="1.5" PointX="10.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.PatientStatus" Width="1.5" PointX="15" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.PatientStatusType" Width="1.5" PointX="12.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.AttachedFile" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.AttachedFileFolder" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.Record" Width="1.5" PointX="12.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.Post" Width="1.5" PointX="7.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.Instruction" Width="1.5" PointX="15.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.Question" Width="1.5" PointX="17.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.QuestionAnswer" Width="3.375" PointX="17.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SettingsAnketa" Width="1.5" PointX="5.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SettingsAnketaQuestionCategory" Width="1.5" PointX="7.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyTemplate" Width="1.5" PointX="17.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.User" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.UserProfilePhoto" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.Briefing" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.BriefingAttachedFile" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.BriefingReport" Width="1.5" PointX="17.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.BriefingReportSettings" Width="1.5" PointX="8.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.Instruction1" Width="1.5" PointX="17.75" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.InstructionBlitz" Width="1.5" PointX="2.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.InstructionBlitzCategory" Width="1.5" PointX="9.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.InstructionBlitzFile" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.InstructionCategory" Width="1.5" PointX="11.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.InstructionFile" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.InstructionProfession" Width="1.5" PointX="10" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.InstructionSettings" Width="1.5" PointX="13.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.Question1" Width="1.5" PointX="19.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.QuestionAnswerCorrectPercent" Width="1.5" PointX="19.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.QuestionCategory" Width="1.5" PointX="19.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.Survey" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyAnswer" Width="1.5" PointX="8.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyAttachedFile" Width="1.5" PointX="8.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyReport" Width="1.5" PointX="19.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyReportSettings" Width="1.5" PointX="10.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyReportSettingsEmployee" Width="1.5" PointX="13" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyTemplate1" Width="1.5" PointX="19.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyTemplateDevice" Width="1.5" PointX="15.75" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyTemplatePatient" Width="1.5" PointX="19.75" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyTemplateProfession" Width="1.5" PointX="10" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyType" Width="1.5" PointX="17.75" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.PatientTable" Width="1.5" PointX="19.75" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.BriefingReportSettingsEmployee" Width="1.5" PointX="11" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.PatientFullInfo" Width="1.5" PointX="21.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.InstructionBlitzInfo" Width="1.5" PointX="0.75" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.InstructionInfo" Width="1.5" PointX="2.75" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.InstructionProfessionInfo" Width="1.5" PointX="4.75" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.QuestionAnswerInfo" Width="3.5" PointX="4.75" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.QuestionInfo" Width="1.5" PointX="8.75" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyAnswerInfo" Width="1.5" PointX="10.75" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyTemplateDeviceInfo" Width="1.5" PointX="21.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyTemplateFullInfo" Width="1.5" PointX="12.75" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyTemplateInfo" Width="1.5" PointX="14.75" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyTemplatePatientInfo" Width="1.5" PointX="16.75" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyTemplateProfessionInfo" Width="2.375" PointX="23.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkProtectionModel.SurveyTemplateQuestionCategory" Width="2.5" PointX="23.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="WorkProtectionModel.Patient_RecordGuid_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.PatientRelation_TypeId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.PatientStatus_StatusId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.AttachedFile_FolderId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.BriefingAttachedFile_FileGuid_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.InstructionBlitzFile_FileGuid_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.InstructionFile_FileGuid_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.SurveyAttachedFile_FileGuid_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.InstructionProfession_ProfessionId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.SurveyTemplateProfession_ProfessionId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.UserProfilePhoto_UserId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.BriefingAttachedFile_BriefingId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.BriefingReportSettingsEmployee_SettingsId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.SurveyAnswer_SurveyId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.SurveyAttachedFile_SurveyId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkProtectionModel.ReportSettingsEmployee_SettingsId_fk" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

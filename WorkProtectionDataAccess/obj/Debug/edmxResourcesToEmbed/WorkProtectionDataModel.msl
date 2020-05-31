@@ -1,0 +1,953 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище WorkProtectionModelContainer" CdmEntityContainer="WorkProtectionEntities">
+    <EntitySetMapping Name="Patient">
+      <EntityTypeMapping TypeName="WorkProtectionModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="SearchFirstName" ColumnName="SearchFirstName" />
+          <ScalarProperty Name="SearchLastName" ColumnName="SearchLastName" />
+          <ScalarProperty Name="SearchMiddleName" ColumnName="SearchMiddleName" />
+          <ScalarProperty Name="SearchPhone" ColumnName="SearchPhone" />
+          <ScalarProperty Name="SearchAddress" ColumnName="SearchAddress" />
+          <ScalarProperty Name="SearchComment" ColumnName="SearchComment" />
+          <ScalarProperty Name="SearchFullName" ColumnName="SearchFullName" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientDactilography">
+      <EntityTypeMapping TypeName="WorkProtectionModel.PatientDactilography">
+        <MappingFragment StoreEntitySet="PatientDactilography">
+          <ScalarProperty Name="PatientGuid" ColumnName="PatientGuid" />
+          <ScalarProperty Name="LeftIndex" ColumnName="LeftIndex" />
+          <ScalarProperty Name="LeftMiddle" ColumnName="LeftMiddle" />
+          <ScalarProperty Name="LeftRing" ColumnName="LeftRing" />
+          <ScalarProperty Name="LeftLittle" ColumnName="LeftLittle" />
+          <ScalarProperty Name="LeftThumb" ColumnName="LeftThumb" />
+          <ScalarProperty Name="RightIndex" ColumnName="RightIndex" />
+          <ScalarProperty Name="RightMiddle" ColumnName="RightMiddle" />
+          <ScalarProperty Name="RightRing" ColumnName="RightRing" />
+          <ScalarProperty Name="RightLittle" ColumnName="RightLittle" />
+          <ScalarProperty Name="RightThumb" ColumnName="RightThumb" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientPhoto">
+      <EntityTypeMapping TypeName="WorkProtectionModel.PatientPhoto">
+        <MappingFragment StoreEntitySet="PatientPhoto">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PatientGuid" ColumnName="PatientGuid" />
+          <ScalarProperty Name="PhotoOriginal" ColumnName="PhotoOriginal" />
+          <ScalarProperty Name="Photo128" ColumnName="Photo128" />
+          <ScalarProperty Name="isVerifed" ColumnName="isVerifed" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="SrcOriginal" ColumnName="SrcOriginal" />
+          <ScalarProperty Name="Src600" ColumnName="Src600" />
+          <ScalarProperty Name="Src200" ColumnName="Src200" />
+          <ScalarProperty Name="Src50" ColumnName="Src50" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientRelation">
+      <EntityTypeMapping TypeName="WorkProtectionModel.PatientRelation">
+        <MappingFragment StoreEntitySet="PatientRelation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ParentPatientGuid" ColumnName="ParentPatientGuid" />
+          <ScalarProperty Name="ChieldPatientGuid" ColumnName="ChieldPatientGuid" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+          <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+          <ScalarProperty Name="IsArchive" ColumnName="IsArchive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientRelationType">
+      <EntityTypeMapping TypeName="WorkProtectionModel.PatientRelationType">
+        <MappingFragment StoreEntitySet="PatientRelationType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+          <ScalarProperty Name="ChieldName" ColumnName="ChieldName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientStatus">
+      <EntityTypeMapping TypeName="WorkProtectionModel.PatientStatus">
+        <MappingFragment StoreEntitySet="PatientStatus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PatientGuid" ColumnName="PatientGuid" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientStatusType">
+      <EntityTypeMapping TypeName="WorkProtectionModel.PatientStatusType">
+        <MappingFragment StoreEntitySet="PatientStatusType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AttachedFile">
+      <EntityTypeMapping TypeName="WorkProtectionModel.AttachedFile">
+        <MappingFragment StoreEntitySet="AttachedFile">
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="FolderId" ColumnName="FolderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AttachedFileFolder">
+      <EntityTypeMapping TypeName="WorkProtectionModel.AttachedFileFolder">
+        <MappingFragment StoreEntitySet="AttachedFileFolder">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Record">
+      <EntityTypeMapping TypeName="WorkProtectionModel.Record">
+        <MappingFragment StoreEntitySet="Record">
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="DocumentGuid" ColumnName="DocumentGuid" />
+          <ScalarProperty Name="IsArchive" ColumnName="IsArchive" />
+          <ScalarProperty Name="LastVersionGuid" ColumnName="LastVersionGuid" />
+          <ScalarProperty Name="IsSystem" ColumnName="IsSystem" />
+          <ScalarProperty Name="DocumentNameGuid" ColumnName="DocumentNameGuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Post">
+      <EntityTypeMapping TypeName="WorkProtectionModel.Post">
+        <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="OKPDTR" ColumnName="OKPDTR" />
+          <ScalarProperty Name="OKZ" ColumnName="OKZ" />
+          <ScalarProperty Name="KCS" ColumnName="KCS" />
+          <ScalarProperty Name="TARIFF" ColumnName="TARIFF" />
+          <ScalarProperty Name="ETKS" ColumnName="ETKS" />
+          <ScalarProperty Name="CATEGOGY" ColumnName="CATEGOGY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instruction">
+      <EntityTypeMapping TypeName="WorkProtectionModel.Instruction">
+        <MappingFragment StoreEntitySet="Instruction">
+          <ScalarProperty Name="VersionId" ColumnName="VersionId" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="InstructionVersion" ColumnName="InstructionVersion" />
+          <ScalarProperty Name="InstructionDate" ColumnName="InstructionDate" />
+          <ScalarProperty Name="InstructionName" ColumnName="InstructionName" />
+          <ScalarProperty Name="InstructionCode" ColumnName="InstructionCode" />
+          <ScalarProperty Name="InstructionComment" ColumnName="InstructionComment" />
+          <ScalarProperty Name="InstructionCategory" ColumnName="InstructionCategory" />
+          <ScalarProperty Name="InstructionCategoryId" ColumnName="InstructionCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question">
+      <EntityTypeMapping TypeName="WorkProtectionModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="VersionId" ColumnName="VersionId" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="QuestionCategoryId" ColumnName="QuestionCategoryId" />
+          <ScalarProperty Name="QuestionCode" ColumnName="QuestionCode" />
+          <ScalarProperty Name="QuestionName" ColumnName="QuestionName" />
+          <ScalarProperty Name="QuestionComment" ColumnName="QuestionComment" />
+          <ScalarProperty Name="QuestionCategory" ColumnName="QuestionCategory" />
+          <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+          <ScalarProperty Name="QuestionImage" ColumnName="QuestionImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionAnswer">
+      <EntityTypeMapping TypeName="WorkProtectionModel.QuestionAnswer">
+        <MappingFragment StoreEntitySet="QuestionAnswer">
+          <ScalarProperty Name="VersionId" ColumnName="VersionId" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="AnswerComment" ColumnName="AnswerComment" />
+          <ScalarProperty Name="AnswerCode" ColumnName="AnswerCode" />
+          <ScalarProperty Name="AnswerCorrect" ColumnName="AnswerCorrect" />
+          <ScalarProperty Name="AnswerName" ColumnName="AnswerName" />
+          <ScalarProperty Name="AnswerCorrectId" ColumnName="AnswerCorrectId" />
+          <ScalarProperty Name="Normativno_pravovoy_akt" ColumnName="Normativno_pravovoy_akt" />
+          <ScalarProperty Name="Punkt_dokumenta" ColumnName="Punkt_dokumenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SettingsAnketa">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SettingsAnketa">
+        <MappingFragment StoreEntitySet="SettingsAnketa">
+          <ScalarProperty Name="VersionId" ColumnName="VersionId" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Izmeryatj_parametr" ColumnName="Izmeryatj_parametr" />
+          <ScalarProperty Name="Poryadok_prohozhdeniya" ColumnName="Poryadok_prohozhdeniya" />
+          <ScalarProperty Name="Rezhim_obucheniya" ColumnName="Rezhim_obucheniya" />
+          <ScalarProperty Name="SurveyTime" ColumnName="SurveyTime" />
+          <ScalarProperty Name="RepeatQuestion" ColumnName="RepeatQuestion" />
+          <ScalarProperty Name="RepeatQuestionIsCorrect" ColumnName="RepeatQuestionIsCorrect" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SettingsAnketaQuestionCategory">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SettingsAnketaQuestionCategory">
+        <MappingFragment StoreEntitySet="SettingsAnketaQuestionCategory">
+          <ScalarProperty Name="VersionId" ColumnName="VersionId" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Poryadok_prohozhdeniya" ColumnName="Poryadok_prohozhdeniya" />
+          <ScalarProperty Name="QuestionCategory" ColumnName="QuestionCategory" />
+          <ScalarProperty Name="QuestionCategoryId" ColumnName="QuestionCategoryId" />
+          <ScalarProperty Name="Kolichestvo_voprosov" ColumnName="Kolichestvo_voprosov" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyTemplate">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyTemplate">
+        <MappingFragment StoreEntitySet="SurveyTemplate">
+          <ScalarProperty Name="VersionId" ColumnName="VersionId" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="SurveyButtonName" ColumnName="SurveyButtonName" />
+          <ScalarProperty Name="SurveyType" ColumnName="SurveyType" />
+          <ScalarProperty Name="SurveyComment" ColumnName="SurveyComment" />
+          <ScalarProperty Name="SurveyName" ColumnName="SurveyName" />
+          <ScalarProperty Name="SurveyTypeDocumentGuid" ColumnName="SurveyTypeDocumentGuid" />
+          <ScalarProperty Name="SurveyTypeRepeatDocumentGuid" ColumnName="SurveyTypeRepeatDocumentGuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="WorkProtectionModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+          <ScalarProperty Name="IsRestorePassword" ColumnName="IsRestorePassword" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="SecondStepOfAuthentication" ColumnName="SecondStepOfAuthentication" />
+          <ScalarProperty Name="EndDateBlocking" ColumnName="EndDateBlocking" />
+          <ScalarProperty Name="SendEmailDate" ColumnName="SendEmailDate" />
+          <ScalarProperty Name="LastMessageNumber" ColumnName="LastMessageNumber" />
+          <ScalarProperty Name="KeyForRestorePassword" ColumnName="KeyForRestorePassword" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="IsTestUser" ColumnName="IsTestUser" />
+          <ScalarProperty Name="SipId" ColumnName="SipId" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="GuidByDomain" ColumnName="GuidByDomain" />
+          <ScalarProperty Name="LoginByDomain" ColumnName="LoginByDomain" />
+          <ScalarProperty Name="isPasswordUnlimited" ColumnName="isPasswordUnlimited" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfilePhoto">
+      <EntityTypeMapping TypeName="WorkProtectionModel.UserProfilePhoto">
+        <MappingFragment StoreEntitySet="UserProfilePhoto">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PhotoOriginal" ColumnName="PhotoOriginal" />
+          <ScalarProperty Name="Photo128" ColumnName="Photo128" />
+          <ScalarProperty Name="Photo32" ColumnName="Photo32" />
+          <ScalarProperty Name="SrcOriginal" ColumnName="SrcOriginal" />
+          <ScalarProperty Name="Src600" ColumnName="Src600" />
+          <ScalarProperty Name="Src200" ColumnName="Src200" />
+          <ScalarProperty Name="Src50" ColumnName="Src50" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Briefing">
+      <EntityTypeMapping TypeName="WorkProtectionModel.Briefing">
+        <MappingFragment StoreEntitySet="Briefing">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="PatientGuid" ColumnName="PatientGuid" />
+          <ScalarProperty Name="InstructionGuid" ColumnName="InstructionGuid" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="TimeSeconds" ColumnName="TimeSeconds" />
+          <ScalarProperty Name="DeviceGuid" ColumnName="DeviceGuid" />
+          <ScalarProperty Name="InstructionVersion" ColumnName="InstructionVersion" />
+          <ScalarProperty Name="InstructionType" ColumnName="InstructionType" />
+          <ScalarProperty Name="BlitzInstructionGuid" ColumnName="BlitzInstructionGuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BriefingAttachedFile">
+      <EntityTypeMapping TypeName="WorkProtectionModel.BriefingAttachedFile">
+        <MappingFragment StoreEntitySet="BriefingAttachedFile">
+          <ScalarProperty Name="BriefingId" ColumnName="BriefingId" />
+          <ScalarProperty Name="FileGuid" ColumnName="FileGuid" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BriefingReport">
+      <EntityTypeMapping TypeName="WorkProtectionModel.BriefingReport">
+        <MappingFragment StoreEntitySet="BriefingReport">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PeriodType" ColumnName="PeriodType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PrintFormPath" ColumnName="PrintFormPath" />
+          <ScalarProperty Name="MailTo" ColumnName="MailTo" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="SettingsId" ColumnName="SettingsId" />
+          <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+          <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BriefingReportSettings">
+      <EntityTypeMapping TypeName="WorkProtectionModel.BriefingReportSettings">
+        <MappingFragment StoreEntitySet="BriefingReportSettings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+          <ScalarProperty Name="PeriodType" ColumnName="PeriodType" />
+          <ScalarProperty Name="PrintFormPath" ColumnName="PrintFormPath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instruction1">
+      <EntityTypeMapping TypeName="WorkProtectionModel.Instruction1">
+        <MappingFragment StoreEntitySet="Instruction1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="SearchName" ColumnName="SearchName" />
+          <ScalarProperty Name="SearchCode" ColumnName="SearchCode" />
+          <ScalarProperty Name="CurrentVersion" ColumnName="CurrentVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstructionBlitz">
+      <EntityTypeMapping TypeName="WorkProtectionModel.InstructionBlitz">
+        <MappingFragment StoreEntitySet="InstructionBlitz">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="SearchName" ColumnName="SearchName" />
+          <ScalarProperty Name="SearchNumber" ColumnName="SearchNumber" />
+          <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstructionBlitzCategory">
+      <EntityTypeMapping TypeName="WorkProtectionModel.InstructionBlitzCategory">
+        <MappingFragment StoreEntitySet="InstructionBlitzCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TimeType" ColumnName="TimeType" />
+          <ScalarProperty Name="TimeValue" ColumnName="TimeValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstructionBlitzFile">
+      <EntityTypeMapping TypeName="WorkProtectionModel.InstructionBlitzFile">
+        <MappingFragment StoreEntitySet="InstructionBlitzFile">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InstructionBlitzGuid" ColumnName="InstructionBlitzGuid" />
+          <ScalarProperty Name="FileGuid" ColumnName="FileGuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstructionCategory">
+      <EntityTypeMapping TypeName="WorkProtectionModel.InstructionCategory">
+        <MappingFragment StoreEntitySet="InstructionCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstructionFile">
+      <EntityTypeMapping TypeName="WorkProtectionModel.InstructionFile">
+        <MappingFragment StoreEntitySet="InstructionFile">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InstructionGuid" ColumnName="InstructionGuid" />
+          <ScalarProperty Name="FileGuid" ColumnName="FileGuid" />
+          <ScalarProperty Name="InstructionVersion" ColumnName="InstructionVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstructionProfession">
+      <EntityTypeMapping TypeName="WorkProtectionModel.InstructionProfession">
+        <MappingFragment StoreEntitySet="InstructionProfession">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InstructionGuid" ColumnName="InstructionGuid" />
+          <ScalarProperty Name="ProfessionId" ColumnName="ProfessionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstructionSettings">
+      <EntityTypeMapping TypeName="WorkProtectionModel.InstructionSettings">
+        <MappingFragment StoreEntitySet="InstructionSettings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PeriodTimeValue" ColumnName="PeriodTimeValue" />
+          <ScalarProperty Name="PeriodTimeType" ColumnName="PeriodTimeType" />
+          <ScalarProperty Name="NewVersionTimeValue" ColumnName="NewVersionTimeValue" />
+          <ScalarProperty Name="NewVersionTimeType" ColumnName="NewVersionTimeType" />
+          <ScalarProperty Name="InactiveTimeValue" ColumnName="InactiveTimeValue" />
+          <ScalarProperty Name="InactiveTimeType" ColumnName="InactiveTimeType" />
+          <ScalarProperty Name="DayColors" ColumnName="DayColors" />
+          <ScalarProperty Name="BlitzDayColors" ColumnName="BlitzDayColors" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question1">
+      <EntityTypeMapping TypeName="WorkProtectionModel.Question1">
+        <MappingFragment StoreEntitySet="Question1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="SearchName" ColumnName="SearchName" />
+          <ScalarProperty Name="SearchCode" ColumnName="SearchCode" />
+          <ScalarProperty Name="SearchText" ColumnName="SearchText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionAnswerCorrectPercent">
+      <EntityTypeMapping TypeName="WorkProtectionModel.QuestionAnswerCorrectPercent">
+        <MappingFragment StoreEntitySet="QuestionAnswerCorrectPercent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="ValueDelimeter" ColumnName="ValueDelimeter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionCategory">
+      <EntityTypeMapping TypeName="WorkProtectionModel.QuestionCategory">
+        <MappingFragment StoreEntitySet="QuestionCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Survey">
+      <EntityTypeMapping TypeName="WorkProtectionModel.Survey">
+        <MappingFragment StoreEntitySet="Survey">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+          <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+          <ScalarProperty Name="PatientGuid" ColumnName="PatientGuid" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="DeviceGuid" ColumnName="DeviceGuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyAnswer">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyAnswer">
+        <MappingFragment StoreEntitySet="SurveyAnswer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+          <ScalarProperty Name="QuestionGuid" ColumnName="QuestionGuid" />
+          <ScalarProperty Name="QuestionVersionNumber" ColumnName="QuestionVersionNumber" />
+          <ScalarProperty Name="SelectedAnswerNumber" ColumnName="SelectedAnswerNumber" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyAttachedFile">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyAttachedFile">
+        <MappingFragment StoreEntitySet="SurveyAttachedFile">
+          <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+          <ScalarProperty Name="FileGuid" ColumnName="FileGuid" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyReport">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyReport">
+        <MappingFragment StoreEntitySet="SurveyReport">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PeriodType" ColumnName="PeriodType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+          <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+          <ScalarProperty Name="CorrectPercent" ColumnName="CorrectPercent" />
+          <ScalarProperty Name="MailTo" ColumnName="MailTo" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="SettingsId" ColumnName="SettingsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyReportSettings">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyReportSettings">
+        <MappingFragment StoreEntitySet="SurveyReportSettings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+          <ScalarProperty Name="PeriodType" ColumnName="PeriodType" />
+          <ScalarProperty Name="CorrectPercent" ColumnName="CorrectPercent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyReportSettingsEmployee">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyReportSettingsEmployee">
+        <MappingFragment StoreEntitySet="SurveyReportSettingsEmployee">
+          <ScalarProperty Name="SettingsId" ColumnName="SettingsId" />
+          <ScalarProperty Name="EmployeeGuid" ColumnName="EmployeeGuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyTemplate1">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyTemplate1">
+        <MappingFragment StoreEntitySet="SurveyTemplate1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="SearchName" ColumnName="SearchName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyTemplateDevice">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyTemplateDevice">
+        <MappingFragment StoreEntitySet="SurveyTemplateDevice">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TemplateGuid" ColumnName="TemplateGuid" />
+          <ScalarProperty Name="DeviceGuid" ColumnName="DeviceGuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyTemplatePatient">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyTemplatePatient">
+        <MappingFragment StoreEntitySet="SurveyTemplatePatient">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TemplateGuid" ColumnName="TemplateGuid" />
+          <ScalarProperty Name="PatientGuid" ColumnName="PatientGuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyTemplateProfession">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyTemplateProfession">
+        <MappingFragment StoreEntitySet="SurveyTemplateProfession">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TemplateGuid" ColumnName="TemplateGuid" />
+          <ScalarProperty Name="ProfessionId" ColumnName="ProfessionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyType">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyType">
+        <MappingFragment StoreEntitySet="SurveyType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DocumentGuid" ColumnName="DocumentGuid" />
+          <ScalarProperty Name="RepeatDocumentGuid" ColumnName="RepeatDocumentGuid" />
+          <ScalarProperty Name="SearchName" ColumnName="SearchName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientTable">
+      <EntityTypeMapping TypeName="WorkProtectionModel.PatientTable">
+        <MappingFragment StoreEntitySet="PatientTable">
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Years" ColumnName="Years" />
+          <ScalarProperty Name="SEX" ColumnName="SEX" />
+          <ScalarProperty Name="SeriyaPolisa" ColumnName="SeriyaPolisa" />
+          <ScalarProperty Name="NomerPolis" ColumnName="NomerPolis" />
+          <ScalarProperty Name="InsuranceCompany" ColumnName="InsuranceCompany" />
+          <ScalarProperty Name="InsuranceDateFrom" ColumnName="InsuranceDateFrom" />
+          <ScalarProperty Name="InsuranceDateTo" ColumnName="InsuranceDateTo" />
+          <ScalarProperty Name="AttachmentOrganisation" ColumnName="AttachmentOrganisation" />
+          <ScalarProperty Name="SECTOR" ColumnName="SECTOR" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="MedCardNum" ColumnName="MedCardNum" />
+          <ScalarProperty Name="NumberAmb" ColumnName="NumberAmb" />
+          <ScalarProperty Name="SNILS" ColumnName="SNILS" />
+          <ScalarProperty Name="LgotDrug" ColumnName="LgotDrug" />
+          <ScalarProperty Name="JobTabNumber" ColumnName="JobTabNumber" />
+          <ScalarProperty Name="HomePhoneNumber" ColumnName="HomePhoneNumber" />
+          <ScalarProperty Name="MobilePhoneNumber" ColumnName="MobilePhoneNumber" />
+          <ScalarProperty Name="ChatId" ColumnName="ChatId" />
+          <ScalarProperty Name="PlaceOfJob" ColumnName="PlaceOfJob" />
+          <ScalarProperty Name="OrganisationGuid" ColumnName="OrganisationGuid" />
+          <ScalarProperty Name="Post" ColumnName="Post" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+          <ScalarProperty Name="WorkPhoneNumber" ColumnName="WorkPhoneNumber" />
+          <ScalarProperty Name="JobComment" ColumnName="JobComment" />
+          <ScalarProperty Name="JobFactory" ColumnName="JobFactory" />
+          <ScalarProperty Name="JobSection" ColumnName="JobSection" />
+          <ScalarProperty Name="JobDepartment" ColumnName="JobDepartment" />
+          <ScalarProperty Name="JobCharacter" ColumnName="JobCharacter" />
+          <ScalarProperty Name="JobCondition" ColumnName="JobCondition" />
+          <ScalarProperty Name="JobBeginDate" ColumnName="JobBeginDate" />
+          <ScalarProperty Name="JobEndDate" ColumnName="JobEndDate" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="ProfessionId" ColumnName="ProfessionId" />
+          <ScalarProperty Name="PatientLgot" ColumnName="PatientLgot" />
+          <ScalarProperty Name="InvalGroup" ColumnName="InvalGroup" />
+          <ScalarProperty Name="InvalOtkazOtDlo" ColumnName="InvalOtkazOtDlo" />
+          <ScalarProperty Name="InvalOsvidetPodlezhit" ColumnName="InvalOsvidetPodlezhit" />
+          <ScalarProperty Name="InvalDopZakl" ColumnName="InvalDopZakl" />
+          <ScalarProperty Name="InvalReason" ColumnName="InvalReason" />
+          <ScalarProperty Name="InvalPredGroup" ColumnName="InvalPredGroup" />
+          <ScalarProperty Name="InvalOgranichStepen" ColumnName="InvalOgranichStepen" />
+          <ScalarProperty Name="InvalLgotCode" ColumnName="InvalLgotCode" />
+          <ScalarProperty Name="InvalDataOcherednogoOsvidetel" ColumnName="InvalDataOcherednogoOsvidetel" />
+          <ScalarProperty Name="InvalPrichinaSnyatiya" ColumnName="InvalPrichinaSnyatiya" />
+          <ScalarProperty Name="InvalDataSnyatiya" ColumnName="InvalDataSnyatiya" />
+          <ScalarProperty Name="InvalSeriya" ColumnName="InvalSeriya" />
+          <ScalarProperty Name="InvalFioVracha" ColumnName="InvalFioVracha" />
+          <ScalarProperty Name="InvalPervich" ColumnName="InvalPervich" />
+          <ScalarProperty Name="InvalVidan" ColumnName="InvalVidan" />
+          <ScalarProperty Name="InvalDataVidachi" ColumnName="InvalDataVidachi" />
+          <ScalarProperty Name="InvalItog" ColumnName="InvalItog" />
+          <ScalarProperty Name="InvalNomer" ColumnName="InvalNomer" />
+          <ScalarProperty Name="InvalDataUstanovleniya" ColumnName="InvalDataUstanovleniya" />
+          <ScalarProperty Name="InvalMkbCode" ColumnName="InvalMkbCode" />
+          <ScalarProperty Name="InvalComment" ColumnName="InvalComment" />
+          <ScalarProperty Name="InvalSrok" ColumnName="InvalSrok" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PaspKemVidan" ColumnName="PaspKemVidan" />
+          <ScalarProperty Name="PaspSeries" ColumnName="PaspSeries" />
+          <ScalarProperty Name="PaspNumber" ColumnName="PaspNumber" />
+          <ScalarProperty Name="PaspDataVidachi" ColumnName="PaspDataVidachi" />
+          <ScalarProperty Name="IdentityDocument" ColumnName="IdentityDocument" />
+          <ScalarProperty Name="PasportFromDate" ColumnName="PasportFromDate" />
+          <ScalarProperty Name="PasportToDate" ColumnName="PasportToDate" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="InfoSource" ColumnName="InfoSource" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IsArchive" ColumnName="IsArchive" />
+          <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="PersonelNumber" ColumnName="PersonelNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SearchFirstName" ColumnName="SearchFirstName" />
+          <ScalarProperty Name="SearchLastName" ColumnName="SearchLastName" />
+          <ScalarProperty Name="SearchMiddleName" ColumnName="SearchMiddleName" />
+          <ScalarProperty Name="SearchPhone" ColumnName="SearchPhone" />
+          <ScalarProperty Name="SearchAddress" ColumnName="SearchAddress" />
+          <ScalarProperty Name="SearchComment" ColumnName="SearchComment" />
+          <ScalarProperty Name="SearchFullName" ColumnName="SearchFullName" />
+          <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+          <ScalarProperty Name="NotificationSmsEnable" ColumnName="NotificationSmsEnable" />
+          <ScalarProperty Name="NotificationMailEnable" ColumnName="NotificationMailEnable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BriefingReportSettingsEmployee">
+      <EntityTypeMapping TypeName="WorkProtectionModel.BriefingReportSettingsEmployee">
+        <MappingFragment StoreEntitySet="BriefingReportSettingsEmployee">
+          <ScalarProperty Name="SettingsId" ColumnName="SettingsId" />
+          <ScalarProperty Name="EmployeeGuid" ColumnName="EmployeeGuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientFullInfo">
+      <EntityTypeMapping TypeName="WorkProtectionModel.PatientFullInfo">
+        <MappingFragment StoreEntitySet="PatientFullInfo">
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Years" ColumnName="Years" />
+          <ScalarProperty Name="SEX" ColumnName="SEX" />
+          <ScalarProperty Name="SeriyaPolisa" ColumnName="SeriyaPolisa" />
+          <ScalarProperty Name="NomerPolis" ColumnName="NomerPolis" />
+          <ScalarProperty Name="InsuranceCompany" ColumnName="InsuranceCompany" />
+          <ScalarProperty Name="InsuranceDateFrom" ColumnName="InsuranceDateFrom" />
+          <ScalarProperty Name="InsuranceDateTo" ColumnName="InsuranceDateTo" />
+          <ScalarProperty Name="AttachmentOrganisation" ColumnName="AttachmentOrganisation" />
+          <ScalarProperty Name="SECTOR" ColumnName="SECTOR" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="MedCardNum" ColumnName="MedCardNum" />
+          <ScalarProperty Name="NumberAmb" ColumnName="NumberAmb" />
+          <ScalarProperty Name="SNILS" ColumnName="SNILS" />
+          <ScalarProperty Name="LgotDrug" ColumnName="LgotDrug" />
+          <ScalarProperty Name="JobTabNumber" ColumnName="JobTabNumber" />
+          <ScalarProperty Name="HomePhoneNumber" ColumnName="HomePhoneNumber" />
+          <ScalarProperty Name="MobilePhoneNumber" ColumnName="MobilePhoneNumber" />
+          <ScalarProperty Name="ChatId" ColumnName="ChatId" />
+          <ScalarProperty Name="PlaceOfJob" ColumnName="PlaceOfJob" />
+          <ScalarProperty Name="OrganisationGuid" ColumnName="OrganisationGuid" />
+          <ScalarProperty Name="Post" ColumnName="Post" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+          <ScalarProperty Name="WorkPhoneNumber" ColumnName="WorkPhoneNumber" />
+          <ScalarProperty Name="JobComment" ColumnName="JobComment" />
+          <ScalarProperty Name="JobFactory" ColumnName="JobFactory" />
+          <ScalarProperty Name="JobSection" ColumnName="JobSection" />
+          <ScalarProperty Name="JobDepartment" ColumnName="JobDepartment" />
+          <ScalarProperty Name="JobCharacter" ColumnName="JobCharacter" />
+          <ScalarProperty Name="JobCondition" ColumnName="JobCondition" />
+          <ScalarProperty Name="JobBeginDate" ColumnName="JobBeginDate" />
+          <ScalarProperty Name="JobEndDate" ColumnName="JobEndDate" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="ProfessionId" ColumnName="ProfessionId" />
+          <ScalarProperty Name="PatientLgot" ColumnName="PatientLgot" />
+          <ScalarProperty Name="InvalGroup" ColumnName="InvalGroup" />
+          <ScalarProperty Name="InvalOtkazOtDlo" ColumnName="InvalOtkazOtDlo" />
+          <ScalarProperty Name="InvalOsvidetPodlezhit" ColumnName="InvalOsvidetPodlezhit" />
+          <ScalarProperty Name="InvalDopZakl" ColumnName="InvalDopZakl" />
+          <ScalarProperty Name="InvalReason" ColumnName="InvalReason" />
+          <ScalarProperty Name="InvalPredGroup" ColumnName="InvalPredGroup" />
+          <ScalarProperty Name="InvalOgranichStepen" ColumnName="InvalOgranichStepen" />
+          <ScalarProperty Name="InvalLgotCode" ColumnName="InvalLgotCode" />
+          <ScalarProperty Name="InvalDataOcherednogoOsvidetel" ColumnName="InvalDataOcherednogoOsvidetel" />
+          <ScalarProperty Name="InvalPrichinaSnyatiya" ColumnName="InvalPrichinaSnyatiya" />
+          <ScalarProperty Name="InvalDataSnyatiya" ColumnName="InvalDataSnyatiya" />
+          <ScalarProperty Name="InvalSeriya" ColumnName="InvalSeriya" />
+          <ScalarProperty Name="InvalFioVracha" ColumnName="InvalFioVracha" />
+          <ScalarProperty Name="InvalPervich" ColumnName="InvalPervich" />
+          <ScalarProperty Name="InvalVidan" ColumnName="InvalVidan" />
+          <ScalarProperty Name="InvalDataVidachi" ColumnName="InvalDataVidachi" />
+          <ScalarProperty Name="InvalItog" ColumnName="InvalItog" />
+          <ScalarProperty Name="InvalNomer" ColumnName="InvalNomer" />
+          <ScalarProperty Name="InvalDataUstanovleniya" ColumnName="InvalDataUstanovleniya" />
+          <ScalarProperty Name="InvalMkbCode" ColumnName="InvalMkbCode" />
+          <ScalarProperty Name="InvalComment" ColumnName="InvalComment" />
+          <ScalarProperty Name="InvalSrok" ColumnName="InvalSrok" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PaspKemVidan" ColumnName="PaspKemVidan" />
+          <ScalarProperty Name="PaspSeries" ColumnName="PaspSeries" />
+          <ScalarProperty Name="PaspNumber" ColumnName="PaspNumber" />
+          <ScalarProperty Name="PaspDataVidachi" ColumnName="PaspDataVidachi" />
+          <ScalarProperty Name="IdentityDocument" ColumnName="IdentityDocument" />
+          <ScalarProperty Name="PasportFromDate" ColumnName="PasportFromDate" />
+          <ScalarProperty Name="PasportToDate" ColumnName="PasportToDate" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="InfoSource" ColumnName="InfoSource" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IsArchive" ColumnName="IsArchive" />
+          <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="PersonelNumber" ColumnName="PersonelNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SearchFirstName" ColumnName="SearchFirstName" />
+          <ScalarProperty Name="SearchLastName" ColumnName="SearchLastName" />
+          <ScalarProperty Name="SearchMiddleName" ColumnName="SearchMiddleName" />
+          <ScalarProperty Name="SearchPhone" ColumnName="SearchPhone" />
+          <ScalarProperty Name="SearchAddress" ColumnName="SearchAddress" />
+          <ScalarProperty Name="SearchComment" ColumnName="SearchComment" />
+          <ScalarProperty Name="SearchFullName" ColumnName="SearchFullName" />
+          <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+          <ScalarProperty Name="NotificationSmsEnable" ColumnName="NotificationSmsEnable" />
+          <ScalarProperty Name="NotificationMailEnable" ColumnName="NotificationMailEnable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstructionBlitzInfo">
+      <EntityTypeMapping TypeName="WorkProtectionModel.InstructionBlitzInfo">
+        <MappingFragment StoreEntitySet="InstructionBlitzInfo">
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="RecordVersion" ColumnName="RecordVersion" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ButtonName" ColumnName="ButtonName" />
+          <ScalarProperty Name="SearchNumber" ColumnName="SearchNumber" />
+          <ScalarProperty Name="SearchName" ColumnName="SearchName" />
+          <ScalarProperty Name="FileCount" ColumnName="FileCount" />
+          <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+          <ScalarProperty Name="IsArchive" ColumnName="IsArchive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstructionInfo">
+      <EntityTypeMapping TypeName="WorkProtectionModel.InstructionInfo">
+        <MappingFragment StoreEntitySet="InstructionInfo">
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CurrentVersion" ColumnName="CurrentVersion" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="RecordVersion" ColumnName="RecordVersion" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="SearchCode" ColumnName="SearchCode" />
+          <ScalarProperty Name="SearchName" ColumnName="SearchName" />
+          <ScalarProperty Name="FileCount" ColumnName="FileCount" />
+          <ScalarProperty Name="IsArchive" ColumnName="IsArchive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstructionProfessionInfo">
+      <EntityTypeMapping TypeName="WorkProtectionModel.InstructionProfessionInfo">
+        <MappingFragment StoreEntitySet="InstructionProfessionInfo">
+          <ScalarProperty Name="InstructionGuid" ColumnName="InstructionGuid" />
+          <ScalarProperty Name="ProfessionId" ColumnName="ProfessionId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InstructionName" ColumnName="InstructionName" />
+          <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionAnswerInfo">
+      <EntityTypeMapping TypeName="WorkProtectionModel.QuestionAnswerInfo">
+        <MappingFragment StoreEntitySet="QuestionAnswerInfo">
+          <ScalarProperty Name="QuestionGuid" ColumnName="QuestionGuid" />
+          <ScalarProperty Name="SystemNumber" ColumnName="SystemNumber" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="RecordVersion" ColumnName="RecordVersion" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Correct" ColumnName="Correct" />
+          <ScalarProperty Name="CorrectId" ColumnName="CorrectId" />
+          <ScalarProperty Name="LegalAct" ColumnName="LegalAct" />
+          <ScalarProperty Name="DocumentParagraph" ColumnName="DocumentParagraph" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionInfo">
+      <EntityTypeMapping TypeName="WorkProtectionModel.QuestionInfo">
+        <MappingFragment StoreEntitySet="QuestionInfo">
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="RecordVersion" ColumnName="RecordVersion" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="SearchCode" ColumnName="SearchCode" />
+          <ScalarProperty Name="SearchName" ColumnName="SearchName" />
+          <ScalarProperty Name="SearchText" ColumnName="SearchText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyAnswerInfo">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyAnswerInfo">
+        <MappingFragment StoreEntitySet="SurveyAnswerInfo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PatientGuid" ColumnName="PatientGuid" />
+          <ScalarProperty Name="QuestionCategoryId" ColumnName="QuestionCategoryId" />
+          <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+          <ScalarProperty Name="QuestionGuid" ColumnName="QuestionGuid" />
+          <ScalarProperty Name="QuestionVersionNumber" ColumnName="QuestionVersionNumber" />
+          <ScalarProperty Name="QuestionName" ColumnName="QuestionName" />
+          <ScalarProperty Name="SelectedAnswerNumber" ColumnName="SelectedAnswerNumber" />
+          <ScalarProperty Name="SelectedAnswerName" ColumnName="SelectedAnswerName" />
+          <ScalarProperty Name="SelectedAnswerTypeId" ColumnName="SelectedAnswerTypeId" />
+          <ScalarProperty Name="CorrectAnswerNumber" ColumnName="CorrectAnswerNumber" />
+          <ScalarProperty Name="CorrectAnswerName" ColumnName="CorrectAnswerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyTemplateDeviceInfo">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyTemplateDeviceInfo">
+        <MappingFragment StoreEntitySet="SurveyTemplateDeviceInfo">
+          <ScalarProperty Name="TemplateGuid" ColumnName="TemplateGuid" />
+          <ScalarProperty Name="DeviceGuid" ColumnName="DeviceGuid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyTemplateFullInfo">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyTemplateFullInfo">
+        <MappingFragment StoreEntitySet="SurveyTemplateFullInfo">
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="VersionNumber" ColumnName="VersionNumber" />
+          <ScalarProperty Name="SurveyTypeDocumentGuid" ColumnName="SurveyTypeDocumentGuid" />
+          <ScalarProperty Name="SurveyTypeRepeatDocumentGuid" ColumnName="SurveyTypeRepeatDocumentGuid" />
+          <ScalarProperty Name="ButtonName" ColumnName="ButtonName" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="QuestionEnable" ColumnName="QuestionEnable" />
+          <ScalarProperty Name="QuestionMeasurementOrder" ColumnName="QuestionMeasurementOrder" />
+          <ScalarProperty Name="QuestionIsLearningMode" ColumnName="QuestionIsLearningMode" />
+          <ScalarProperty Name="QuestionIsLearningModeRepeat" ColumnName="QuestionIsLearningModeRepeat" />
+          <ScalarProperty Name="QuestionIsLearningModeRepeatIsCorrect" ColumnName="QuestionIsLearningModeRepeatIsCorrect" />
+          <ScalarProperty Name="QuestionTime" ColumnName="QuestionTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyTemplateInfo">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyTemplateInfo">
+        <MappingFragment StoreEntitySet="SurveyTemplateInfo">
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="RecordGuid" ColumnName="RecordGuid" />
+          <ScalarProperty Name="VersionNumber" ColumnName="VersionNumber" />
+          <ScalarProperty Name="SurveyTypeDocumentGuid" ColumnName="SurveyTypeDocumentGuid" />
+          <ScalarProperty Name="SurveyTypeRepeatDocumentGuid" ColumnName="SurveyTypeRepeatDocumentGuid" />
+          <ScalarProperty Name="ButtonName" ColumnName="ButtonName" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyTemplatePatientInfo">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyTemplatePatientInfo">
+        <MappingFragment StoreEntitySet="SurveyTemplatePatientInfo">
+          <ScalarProperty Name="TemplateGuid" ColumnName="TemplateGuid" />
+          <ScalarProperty Name="PatientGuid" ColumnName="PatientGuid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyTemplateProfessionInfo">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyTemplateProfessionInfo">
+        <MappingFragment StoreEntitySet="SurveyTemplateProfessionInfo">
+          <ScalarProperty Name="TemplateGuid" ColumnName="TemplateGuid" />
+          <ScalarProperty Name="ProfessionId" ColumnName="ProfessionId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyTemplateQuestionCategory">
+      <EntityTypeMapping TypeName="WorkProtectionModel.SurveyTemplateQuestionCategory">
+        <MappingFragment StoreEntitySet="SurveyTemplateQuestionCategory">
+          <ScalarProperty Name="TemplateGuid" ColumnName="TemplateGuid" />
+          <ScalarProperty Name="TemplateRecordSystemNumber" ColumnName="TemplateRecordSystemNumber" />
+          <ScalarProperty Name="TemplateRecordGuid" ColumnName="TemplateRecordGuid" />
+          <ScalarProperty Name="TemplateVersionNumber" ColumnName="TemplateVersionNumber" />
+          <ScalarProperty Name="QuestionCount" ColumnName="QuestionCount" />
+          <ScalarProperty Name="QuestionOrder" ColumnName="QuestionOrder" />
+          <ScalarProperty Name="QuestionCategoryName" ColumnName="QuestionCategoryName" />
+          <ScalarProperty Name="QuestionCategoryId" ColumnName="QuestionCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

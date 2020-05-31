@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uirsWorkProtection", "uirsWorkProtection\uirsWorkProtection.csproj", "{D33294D3-C983-49BB-9778-1F1519527244}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkProtectionDataAccess", "WorkProtectionDataAccess\WorkProtectionDataAccess.csproj", "{BC520147-7B08-4B2B-B890-896D6F686386}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D33294D3-C983-49BB-9778-1F1519527244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D33294D3-C983-49BB-9778-1F1519527244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D33294D3-C983-49BB-9778-1F1519527244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D33294D3-C983-49BB-9778-1F1519527244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC520147-7B08-4B2B-B890-896D6F686386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC520147-7B08-4B2B-B890-896D6F686386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC520147-7B08-4B2B-B890-896D6F686386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC520147-7B08-4B2B-B890-896D6F686386}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5413E3F-4DBA-4CBA-84F4-7F1C81D6C058}
+	EndGlobalSection
+EndGlobal
